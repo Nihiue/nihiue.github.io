@@ -101,6 +101,6 @@ function($scope) {
 });
 myAppModule.controller('headerCtr',
 function($scope) {
-$scope.isReg=false;
-$scope.showPinDiv=false;
+	$scope.isReg=false;
+	$scope.showPinDiv=false;
 });
