@@ -1,5 +1,49 @@
 body{
 	font-family: "Helvetica Neue", "STHeiti", "Microsoft YaHei", "微软雅黑", Helvetica, Arial, sans-serif;
-	min-width: 470px;
 	background: #f1f5f8 ;
 }
+
+#pin-div{
+	position: fixed; 
+	right: 2px;
+	top:40%;	
+	z-index: 10000;
+}
+#pin-div-button{
+	width: 2em;
+	padding: 0.3em;
+	color:#337ab7;
+	border:2px solid #337ab7;
+	border-radius: 10px;
+	z-index: 200;
+	background: white;
+	float: right;
+	z-index: 20000;
+}
+#pin-div-content{	
+	color:black;
+	float: right;
+	width: 25em;
+	background: white;
+	box-shadow: #333 2px 2px 7px;
+	margin-right:10px;
+	border-radius: 4px;
+	padding: 2em;
+	z-index: 20000;
+}
+
+#page-footer{
+	margin-top: 3em;
+	min-height: 10em;
+	background: #444;
+	padding:2em 0 2em 0; 	
+	color: #eee;	
+}
+
+.footer-heading{font-size: 1.5em;margin-bottom: 0.8em;margin-top:1em;font-weight:bold }
+a.footer-link{text-decoration: none;display: block;color: inherit;margin: 0.7em 0;;letter-spacing: 1px}
+a.footer-link:hover{text-decoration: none}
+a.footer-link:visited{text-decoration: none}
+.footer-col{margin-left: auto;margin-right: auto;width: 9em;}
+#footer-ICP{text-align: center;margin-top: 2em}
+img.footer-qrcode{width: 100%;height: auto;}

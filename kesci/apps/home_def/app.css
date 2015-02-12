@@ -1,53 +1,13 @@
-body{background: #eee}
-#pin-div{
-	position: fixed; 
-	right: 2px;
-	top:40%;	
-	z-index: 10000;
-}
-#pin-div-button{
-	width: 2em;
-	padding: 0.3em;
-	color:#337ab7;
-	border:2px solid #337ab7;
-	border-radius: 10px;
-	z-index: 200;
-	background: white;
-	float: right;
-	z-index: 20000;
-}
-#pin-div-content{
-	color:black;
-	float: right;
-	width: 25em;
-	background: white;
-	box-shadow: #333 2px 2px 7px;
-	margin-right:10px;
-	border-radius: 4px;
-	padding: 2em;
-	z-index: 20000;
-}
+
 #page-header{		
 	min-height: 20em;		
 	background: #0078d8;
-	padding: 3em;
+	padding: 3.5em;
 	color: #eee;
 	box-shadow:#111 3px 0px 5px;
 }
-#page-footer{
-	margin-top: 3em;
-	min-height: 10em;
-	background: #444;
-	padding:4em 0 2em 0; 	
-	color: #eee;	
-}
-#footer-wrapper{padding: 0 8%;}
-.footer-heading{font-size: 1.5em;margin-bottom: 0.8em;font-weight:bold }
-a.footer-link{text-decoration: none;display: block;color: inherit;margin: 0.7em 0;;letter-spacing: 1px}
-a.footer-link:hover{text-decoration: none}
-a.footer-link:visited{text-decoration: none}
-#footer-ICP{text-align: center;margin-top: 2em}
-img.footer-qrcode{height: 140px;width: auto}
+
+.container{padding: 0}
 #header-logo{	
 	padding-top: 2em; 	
 	text-shadow:#333 2px 2px 5px;
@@ -55,7 +15,7 @@ img.footer-qrcode{height: 140px;width: auto}
 }
 #header-logo>h1{font-size: 5em;}
 #header-logo>h2{font-size: 1.5em;letter-spacing:2px;}
-#header-form{padding-top: 1.5em;width: 270px;margin-left: auto;margin-right: auto}
+#header-form{padding-top: 1.5em;max-width: 270px;margin-left: auto;margin-right: auto}
 .header-form-header{padding-bottom:1em;}
 a.form-link{color:inherit;display: inline-block;float: right; text-decoration: none;}
 a.form-link:hover{text-shadow:#aaa 0px 0px 10px; text-decoration: none;}
@@ -69,10 +29,11 @@ input.double-input{width:43%;display:inline-block;margin: 0;}
 	margin-top: 3em;
 	margin-bottom: 3em;
 	padding: 1.4em;
+	overflow: hidden;
 	
 }
 .content-box-heading{margin-top: 0.2em;padding-bottom:8px;color:#444;font-size: 1.5em;text-shadow:#aaa 2px 2px 5px;letter-spacing: 2px;border-bottom:2px solid #999}
-.item-container{margin-left: auto;margin-right: auto;width: 22em;margin-top: 2em;}
+.item-container{margin-top: 2em;max-width: 30em;margin-left: auto;margin-right: auto;}
 .item-img{margin-left: auto;margin-right:auto;display: block;margin-bottom: 1em;}
 .item-img-round{margin-left: auto;margin-right:auto;display: block;margin-bottom: 1em;border-radius: 50%}
 .item-title{font-size: 1.2em;font-weight: bold;text-align: center;}
