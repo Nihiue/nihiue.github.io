@@ -101,15 +101,15 @@
 			<div class="row">
 				  <div class="col-md-4" ng-repeat="item in match">
 					  <div class="item-container">
-					  	<img class="item-img" ng-src="{{item.img}}">
+					  	<img class="item-img img-thumbnail" ng-src="{{item.img}}">
 					  		<h2 class="item-title">{{item.name}}</h2>
 					  		<table class="table table-striped">
 					  		<tr><td class="item-table-title">主办方</td><td>{{item.host}}</td></tr>
 					  		<tr><td class="item-table-title">类别</td><td>{{item.type}}</td></tr>
 					  		<tr><td class="item-table-title">地区</td><td>{{item.district}}</td></tr>
 					  		<tr><td class="item-table-title">参赛诱惑</td><td>{{item.reward}}</td></tr>
-					  		<tr><td class="item-table-title">报名截止时间</td><td>{{item.sign_due}}</td></tr>
-					  		<tr><td class="item-table-title">作品截至时间</td><td>{{item.submit_due}}</td></tr>	
+					  		<tr><td class="item-table-title">报名截止</td><td>{{item.sign_due}}</td></tr>
+					  		<tr><td class="item-table-title">作品截止</td><td>{{item.submit_due}}</td></tr>	
 					  		</table>
 					  	</div>	
 				  </div>
@@ -121,7 +121,7 @@
 			<div class="row">
 				  <div class="col-md-4" ng-repeat="item in team">
 					  <div class="item-container">
-					  	<img class="item-img-round" ng-src="{{item.img}}">
+					  	<img class="item-img img-circle img-thumbnail" ng-src="{{item.img}}">
 					  		<h2 class="item-title">{{item.name}}</h2>
 					  		<table class="table table-striped">
 					  		<tr><td class="item-table-title">参与比赛</td><td>{{item.match}}</td></tr>
@@ -141,7 +141,7 @@
 			<div class="row">
 				  <div class="col-md-4" ng-repeat="item in works">
 					  <div class="item-container">
-					  	<img class="item-img" ng-src="{{item.img}}">
+					  	<img class="item-img img-thumbnail" ng-src="{{item.img}}">
 					  		<h2 class="item-title">{{item.name}}</h2>
 					  		<table class="table table-striped">
 					  		<tr><td class="item-table-title">比赛</td><td>{{item.match}}</td></tr>

@@ -35,7 +35,6 @@ input.double-input{width:43%;display:inline-block;margin: 0;}
 .content-box-heading{margin-top: 0.2em;padding-bottom:8px;color:#444;font-size: 1.5em;text-shadow:#aaa 2px 2px 5px;letter-spacing: 2px;border-bottom:2px solid #999}
 .item-container{margin-top: 2em;max-width: 30em;margin-left: auto;margin-right: auto;}
 .item-img{margin-left: auto;margin-right:auto;display: block;margin-bottom: 1em;}
-.item-img-round{margin-left: auto;margin-right:auto;display: block;margin-bottom: 1em;border-radius: 50%}
 .item-title{font-size: 1.2em;font-weight: bold;text-align: center;}
 .item-table-title{font-weight: bold;min-width: 6em;}
 
