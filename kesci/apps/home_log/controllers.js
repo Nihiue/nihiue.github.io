@@ -2,6 +2,13 @@
 
 var myAppModule = angular.module('myApp', ['ngRoute']);
 
+myAppModule.controller('navbarCtr',
+function($scope,$rootScope) {  
+	$rootScope.$on('$routeChangeSuccess', function(){
+        if(arguments[1]&&arguments[1].$$route&&arguments[1].$$route.controller)
+            $scope.ctrName=arguments[1].$$route.controller;
+    }); 
+    });
 myAppModule.controller('newsCtr',
 function($scope) {
 
@@ -15,7 +22,7 @@ function($scope) {
 		type:"程序开发",
 		district:"不限",
 		reward:"iPhone6，实习机会",
-		sign_due:"12月12日",
+		sign_due:"12月12日",	
 		submit_due:"1月20日",
 		img:"images/d.jpg",
 		team_num:12
@@ -123,11 +130,96 @@ function($scope) {
 	]
 });
 
+myAppModule.controller('mineCtr',
+function($scope) {
+	$scope.match_stage_map={"not_start":"报名中","ongoing":"进行中","finished":"作品评选中","result":"结果揭晓"};
+	$scope.my_match=[{
+		name:"超级码力程序设计竞赛",
+		match_id:"123213",
+		stage:"not_start",
+		host:"Avazu",
+		type:"程序开发",
+		district:"不限",
+		reward:"iPhone6，实习机会",
+		sign_due:"12月12日",	
+		submit_due:"1月20日",
+		img:"images/d.jpg",
+		team_num:12,
+		my_team:{
+			name:"梦之队",
+			match:"超级码力程序设计竞赛",		
+			members:["郭冬临","冯巩","周杰伦","东尼大木"],
+			skills:["PHP","JavaScript","MySql"],
+			require_skills:["Web Design","Project Manage","HTML5"],		
+			requier_members:1,
+			signature:"观众朋友们,我想死你们了!",
+			img:"images/e.jpg"
+		}
+	},
+	{
+		name:"超级码力程序设计竞赛",
+		match_id:"123213",
+		stage:"not_start",
+		host:"Avazu",
+		type:"程序开发",
+		district:"不限",
+		reward:"iPhone6，实习机会",
+		sign_due:"12月12日",	
+		submit_due:"1月20日",
+		img:"images/d.jpg",
+		team_num:12,
+		my_team:{
+			name:"梦之队",
+			match:"AVAZU Holding 程序猿的崛起",		
+			members:["郭冬临","冯巩","周杰伦","东尼大木"],
+			skills:["PHP","JavaScript","MySql"],
+			require_skills:["Web Design","Project Manage","HTML5"],		
+			requier_members:1,
+			signature:"观众朋友们,我想死你们了!",
+			img:"images/e.jpg"
+		}
+	},
+	{
+		name:"超级码力程序设计竞赛",
+		match_id:"123213",
+		stage:"not_start",
+		host:"Avazu",
+		type:"程序开发",
+		district:"不限",
+		reward:"iPhone6，实习机会",
+		sign_due:"12月12日",	
+		submit_due:"1月20日",
+		img:"images/d.jpg",
+		team_num:12,
+		my_team:{
+			name:"梦之队",
+			match:"AVAZU Holding 程序猿的崛起",		
+			members:["郭冬临","冯巩","周杰伦","东尼大木"],
+			skills:["PHP","JavaScript","MySql"],
+			require_skills:["Web Design","Project Manage","HTML5"],		
+			requier_members:1,
+			signature:"观众朋友们,我想死你们了!",
+			img:"images/e.jpg"
+		}
+	}];
+
+});
+myAppModule.controller('discoverCtr',
+function($scope) {});
+
 myAppModule.config(['$routeProvider',function ($routeProvider) {
     $routeProvider
         .when('/news', {
             templateUrl: 'views/news.html',
             controller: 'newsCtr'
+        })  
+     	.when('/mine', {
+            templateUrl: 'views/mine.html',
+            controller: 'mineCtr'
+        })  
+        .when('/discover', {
+            templateUrl: 'views/discover.html',
+            controller: 'discoverCtr'
         })        
         .otherwise({
             redirectTo: '/news'

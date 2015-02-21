@@ -1,12 +1,11 @@
-#page-header{ background: #0078d8;box-shadow:#111 3px 0px 5px;color: white;padding: 0.5em 0;}
 #header-logo{	
 	text-shadow:#444 1px 1px 3px;
 	font-size: 1.5em;
 }
 #news-news-div{min-height: 90em;}
 #news-recommed-div{min-height: 90em;}
-#view-container{}
-.content-box{background: white;	box-shadow: #aaa 1px 1px 5px;padding: 1.4em;margin-top: 1em;}
+#view-container{min-height: 50em}
+.content-box{background: white;	box-shadow: #aaa 1px 1px 5px;padding: 1.4em;margin-top: 1em;margin-bottom:2em;overflow: hidden;}
 .content-box-heading{padding-bottom:2px;color:#444;font-size: 1.2em;text-shadow:#aaa 2px 2px 5px;letter-spacing: 2px;border-bottom:2px solid #999}
 .content-box-empty-info{text-align: center;font-size: 1em;padding:2em 0;color:#888;}
 
@@ -18,3 +17,4 @@
 .friend-news-content{font-size: 1.2em;padding: 1em 2em;}
 .recommed-item{margin: 1em 0}
 .item-table-listItem{margin-right: 0.5em;display: inline-block;}
+.navbar{box-shadow: #aaa 1px 1px 5px;}
