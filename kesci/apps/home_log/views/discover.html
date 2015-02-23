@@ -1,1 +1,70 @@
-DISCOVER
+	<ul class="nav nav-tabs">
+	  <li role="presentation" ng-class="{'active':currentTab==0}" ng-click="currentTab=0"><a><span class="glyphicon glyphicon-pawn" aria-hidden="true"></span> 发现比赛</a></li>    
+	  <li role="presentation" ng-class="{'active':currentTab==1}" ng-click="currentTab=1"><a><span class="glyphicon glyphicon-star" aria-hidden="true"></span> 发现团队</a></li>
+	  <li role="presentation" ng-class="{'active':currentTab==2}" ng-click="currentTab=2"><a><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> 发现伙伴</a></li>
+	</ul>
+<div class="content-box no_margintop">
+	<div class="discover-form-container" ng-show="currentTab==0">
+			<form>
+			  <div class="form-group">
+			  	<label>比赛名称</label>			  
+			    <input type="email" class="form-control" placeholder="输入关键字查找">
+			  </div>
+			  <div class="form-group">
+			  	<label>地区</label>			  
+			    <select class="form-control" ng-model="matchSearch_selected_district" ng-options="m for m in selectSource.districtList">  <option value="">不限</option></select>	
+			  </div>
+			  <div class="form-group">
+			    <label>类型</label>
+				 <select class="form-control">
+				  <option>不限</option>
+				  <option>设计</option>
+				  <option>编程</option>				  			  
+				</select>
+			</div>
+			<div class="form-group">
+			    <label>时间</label>	
+			    <select class="form-control">
+				  <option>不限</option>
+				  <option>一个月内</option>
+				  <option>三个月内</option>	
+				  <option>半年内</option>				  			  
+				</select>		   
+			</div>
+			  <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查 找</button>
+			</form>
+	</div>
+		<div class="discover-form-container" ng-show="currentTab==1">
+			<form>
+			  <div class="form-group">
+			  	<label>团队名称</label>			  
+			    <input type="email" class="form-control" placeholder="输入关键字查找">
+			  </div>
+			  <div class="form-group">
+			    <label>参与比赛</label>
+				<select class="form-control" ng-model="teamSearch_selected_match" ng-options="m for m in selectSource.matchList"> <option value="">不限</option> </select>	
+			</div>
+			  <div class="form-group">
+			  	<label>地区</label>			  
+			  	<select class="form-control" ng-model="teamSearch_selected_district" ng-options="m for m in selectSource.districtList">  <option value="">不限</option></select>	
+			  </div>
+			  <div class="form-group">
+			  	<label>需求技能</label>			
+			  	<div class="row">
+				  	<div class="col-sm-9">
+				  		<select class="form-control" ng-model="teamSearch_selected_skill" ng-options="m for m in selectSource.skillList"> <option value="">-- 请选择 --</option></select>			 
+					</div>
+				  	<div class="col-sm-2">
+				  		<button type="button" class="btn btn-default">添 加</button>
+				  	</div>  
+			  	</div>			  	
+			  </div>
+			   <div class="checkbox">
+			    <label>
+			      <input type="checkbox"> 列出已满的团队
+			    </label>
+			  </div>
+			  <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查 找</button>
+			</form>
+	</div>
+</div>

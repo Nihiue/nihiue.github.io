@@ -205,7 +205,15 @@ function($scope) {
 
 });
 myAppModule.controller('discoverCtr',
-function($scope) {});
+function($scope) {
+	$scope.currentTab=0;
+	$scope.selectSource={
+		skillList:["JavaScript","PHP","MySQL","AngularJS"],
+		districtList:["北京","上海","杭州","武汉"],
+		matchList:["12123","23123"]
+	};	
+	 
+});
 
 myAppModule.config(['$routeProvider',function ($routeProvider) {
     $routeProvider
