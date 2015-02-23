@@ -208,10 +208,27 @@ myAppModule.controller('discoverCtr',
 function($scope) {
 	$scope.currentTab=0;
 	$scope.selectSource={
-		skillList:["JavaScript","PHP","MySQL","AngularJS"],
+		skillList:["JavaScript","PHP","MySQL","AngularJS","CSS","SilverLight",".Net"],
 		districtList:["北京","上海","杭州","武汉"],
 		matchList:["12123","23123"]
 	};	
+	$scope.teamSearch_selectedSkills=[];
+	$scope.peopleSearch_selectedSkills=[];
+
+	$scope.addSkillLabel=function (model,label) {
+		if(!label||model.indexOf(label)>-1){
+			return;
+		}
+		model.push(label);
+	}
+	$scope.deleteSkillLabel=function(model,label){
+		var idx = model.indexOf(label);
+		if(!label||idx<0){
+			return;
+		}
+		model.splice(idx,1);
+	}
+
 	 
 });
 

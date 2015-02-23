@@ -49,20 +49,41 @@
 			  	<select class="form-control" ng-model="teamSearch_selected_district" ng-options="m for m in selectSource.districtList">  <option value="">不限</option></select>	
 			  </div>
 			  <div class="form-group">
-			  	<label>需求技能</label>			
-			  	<div class="row">
-				  	<div class="col-sm-9">
-				  		<select class="form-control" ng-model="teamSearch_selected_skill" ng-options="m for m in selectSource.skillList"> <option value="">-- 请选择 --</option></select>			 
-					</div>
-				  	<div class="col-sm-2">
-				  		<button type="button" class="btn btn-default">添 加</button>
-				  	</div>  
-			  	</div>			  	
+			  	<label>需求技能</label>				
+			  		<select  multiple class="form-control" ng-model="teamSearch_selected_skill" ng-options="m for m in selectSource.skillList"> </select><br>
+			  		<button type="button" class="btn btn-default" ng-click="addSkillLabel(teamSearch_selectedSkills,teamSearch_selected_skill[0])">添加 <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></button>
+
+			  	<div class="discover-label-container"><span class="label label-success item-table-listItem" ng-repeat="rs in teamSearch_selectedSkills" ng-click="deleteSkillLabel(teamSearch_selectedSkills,this.rs)">{{rs}}</span></div>  	
 			  </div>
 			   <div class="checkbox">
 			    <label>
 			      <input type="checkbox"> 列出已满的团队
 			    </label>
+			  </div>
+			  <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查 找</button>
+			</form>
+	</div>
+	<div class="discover-form-container" ng-show="currentTab==2">
+			<form>
+			  <div class="form-group">
+			  	<label>用户姓名</label>			  
+			    <input type="email" class="form-control" placeholder="输入关键字查找">
+			  </div>
+			 <div class="form-group">
+			    <label>关注的比赛</label>
+				<select class="form-control" ng-model="peopleSearch_selected_match" ng-options="m for m in selectSource.matchList"> <option value="">不限</option> </select>
+			</div>
+			  <div class="form-group">
+			  	<label>地区</label>			  
+			    <select class="form-control" ng-model="matchSearch_selected_district" ng-options="m for m in selectSource.districtList">  <option value="">不限</option></select>	
+			  </div>
+
+			  <div class="form-group">
+			  	<label>技能</label>				
+			  		<select  multiple class="form-control" ng-model="peopleSearch_selected_skill" ng-options="m for m in selectSource.skillList"> </select><br>
+			  		<button type="button" class="btn btn-default" ng-click="addSkillLabel(peopleSearch_selectedSkills,peopleSearch_selected_skill[0])">添加 <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></button>
+
+			  	<div class="discover-label-container"><span class="label label-success item-table-listItem" ng-repeat="rs in peopleSearch_selectedSkills" ng-click="deleteSkillLabel(peopleSearch_selectedSkills,this.rs)">{{rs}}</span></div>  	
 			  </div>
 			  <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 查 找</button>
 			</form>
