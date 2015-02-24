@@ -215,11 +215,17 @@ function($scope) {
 	$scope.teamSearch_selectedSkills=[];
 	$scope.peopleSearch_selectedSkills=[];
 
-	$scope.addSkillLabel=function (model,label) {
-		if(!label||model.indexOf(label)>-1){
-			return;
+	$scope.addSkillLabel=function (model,labels) {
+		if(!labels||labels.length<1){
+			return
 		}
-		model.push(label);
+		for (var idx=0;idx<labels.length;idx++){
+			var label=labels[idx];
+			if(!label||model.indexOf(label)>-1){
+				continue;
+			}
+			model.push(label);
+		}		
 	}
 	$scope.deleteSkillLabel=function(model,label){
 		var idx = model.indexOf(label);

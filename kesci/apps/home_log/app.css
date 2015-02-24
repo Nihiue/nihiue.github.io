@@ -19,4 +19,4 @@
 .recommed-item{margin: 1em 0}
 .item-table-listItem{margin-right: 0.5em;display: inline-block;}
 .navbar{box-shadow: #aaa 1px 1px 5px;}
-.discover-label-container{padding: 0.5em 0;font-size: 1.2em;}
+.discover-label-container{padding: 0.5em 0;font-size: 1.2em;min-height: 4em}

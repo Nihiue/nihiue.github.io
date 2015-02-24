@@ -51,7 +51,7 @@
 			  <div class="form-group">
 			  	<label>需求技能</label>				
 			  		<select  multiple class="form-control" ng-model="teamSearch_selected_skill" ng-options="m for m in selectSource.skillList"> </select><br>
-			  		<button type="button" class="btn btn-default" ng-click="addSkillLabel(teamSearch_selectedSkills,teamSearch_selected_skill[0])">添加 <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></button>
+			  		<button type="button" class="btn btn-default" ng-click="addSkillLabel(teamSearch_selectedSkills,teamSearch_selected_skill)">添加 <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></button>
 
 			  	<div class="discover-label-container"><span class="label label-success item-table-listItem" ng-repeat="rs in teamSearch_selectedSkills" ng-click="deleteSkillLabel(teamSearch_selectedSkills,this.rs)">{{rs}}</span></div>  	
 			  </div>
@@ -81,7 +81,7 @@
 			  <div class="form-group">
 			  	<label>技能</label>				
 			  		<select  multiple class="form-control" ng-model="peopleSearch_selected_skill" ng-options="m for m in selectSource.skillList"> </select><br>
-			  		<button type="button" class="btn btn-default" ng-click="addSkillLabel(peopleSearch_selectedSkills,peopleSearch_selected_skill[0])">添加 <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></button>
+			  		<button type="button" class="btn btn-default" ng-click="addSkillLabel(peopleSearch_selectedSkills,peopleSearch_selected_skill)">添加 <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></button>
 
 			  	<div class="discover-label-container"><span class="label label-success item-table-listItem" ng-repeat="rs in peopleSearch_selectedSkills" ng-click="deleteSkillLabel(peopleSearch_selectedSkills,this.rs)">{{rs}}</span></div>  	
 			  </div>
