@@ -2,9 +2,9 @@
 
 var myAppModule = angular.module('myApp', []);
 
-myAppModule.controller('matchCtr',
+myAppModule.controller('competitionCtr',
 function($scope) {
-	$scope.match=[
+	$scope.competition=[
 	{
 		name:"AVAZU Holding 程序猿的崛起",
 		host:"Avazu",
@@ -43,7 +43,7 @@ function($scope) {
 	$scope.team=[
 	{
 		name:"梦之队",
-		match:"AVAZU Holding 程序猿的崛起",		
+		competition:"AVAZU Holding 程序猿的崛起",		
 		members:["郭冬临","冯巩","周杰伦","东尼大木"],
 		skills:["PHP","JavaScript","MySql"],
 		require_skills:["Web Design","Project Manage","HTML5"],		
@@ -53,7 +53,7 @@ function($scope) {
 	},
 	{
 		name:"梦之队",
-		match:"AVAZU Holding 程序猿的崛起",		
+		competition:"AVAZU Holding 程序猿的崛起",		
 		members:["郭冬临","冯巩","周杰伦","东尼大木"],
 		skills:["PHP","JavaScript","MySql"],
 		require_skills:["Web Design","Project Manage","HTML5"],		
@@ -63,7 +63,7 @@ function($scope) {
 	},
 	{
 		name:"梦之队",
-		match:"AVAZU Holding 程序猿的崛起",		
+		competition:"AVAZU Holding 程序猿的崛起",		
 		members:["郭冬临","冯巩","周杰伦","东尼大木"],
 		skills:["PHP","JavaScript","MySql"],
 		require_skills:["Web Design","Project Manage","HTML5"],		
@@ -79,21 +79,21 @@ function($scope) {
 	$scope.works=[
 	{
 		name:"HTML5 Boilerplate",
-		match:"AVAZU Holding 程序猿的崛起",		
+		competition:"AVAZU Holding 程序猿的崛起",		
 		team_members:["李小华","周大胖","王小明"],
 		comment:"HTML5 Boilerplate 是一套专业的前端模版，用以开发快速、健壮、适应性强的app或网站。",
 		img:"images/f.jpg"
 	},
 	{
 		name:"HTML5 Boilerplate",
-		match:"AVAZU Holding 程序猿的崛起",		
+		competition:"AVAZU Holding 程序猿的崛起",		
 		team_members:["李小华","周大胖","王小明"],
 		comment:"HTML5 Boilerplate 是一套专业的前端模版，用以开发快速、健壮、适应性强的app或网站。",
 		img:"images/f.jpg"
 	},
 	{
 		name:"HTML5 Boilerplate",
-		match:"AVAZU Holding 程序猿的崛起",		
+		competition:"AVAZU Holding 程序猿的崛起",		
 		team_members:["李小华","周大胖","王小明"],
 		comment:"HTML5 Boilerplate 是一套专业的前端模版，用以开发快速、健壮、适应性强的app或网站。",
 		img:"images/f.jpg"

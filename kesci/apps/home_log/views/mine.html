@@ -1,4 +1,4 @@
-<div class="content-box " ng-repeat="item in my_match">
+<div class="content-box " ng-repeat="item in my_competition">
 		<div class="content-box-item" >
 	  		<div class="row">		
 	  			<div class="col-sm-2"><img class="content-box-item-img img-thumbnail"  ng-src="{{item.img}}"></div>	
@@ -6,7 +6,7 @@
 		  			<div class="item-title text-center">{{item.name}} </div>
 		  			<table class="table table-striped">						  		
 				  		<tr>							  			
-				  			<td class="item-table-title">阶段</td><td>{{match_stage_map[item.stage]}}</td>
+				  			<td class="item-table-title">阶段</td><td>{{competition_stage_map[item.stage]}}</td>
 				  		</tr>							  		
 				  		<tr>
 				  			<td class="item-table-title">报名截止</td><td>{{item.sign_due}}</td>

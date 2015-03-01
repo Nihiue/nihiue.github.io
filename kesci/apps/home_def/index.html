@@ -94,10 +94,10 @@
 </div>
 
 <div class="container">
-	<div class="content-box" ng-controller="matchCtr">
+	<div class="content-box" ng-controller="competitionCtr">
 		<h1 class="content-box-heading"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> 热门比赛</h1>
 			<div class="row">
-				  <div class="col-md-4" ng-repeat="item in match">
+				  <div class="col-md-4" ng-repeat="item in competition">
 					  <div class="item-container">
 					  	<img class="item-img img-thumbnail" ng-src="{{item.img}}">
 					  		<h2 class="item-title">{{item.name}}</h2>
@@ -122,7 +122,7 @@
 					  	<img class="item-img img-circle img-thumbnail" ng-src="{{item.img}}">
 					  		<h2 class="item-title">{{item.name}}</h2>
 					  		<table class="table table-striped">
-					  		<tr><td class="item-table-title">参与比赛</td><td>{{item.match}}</td></tr>
+					  		<tr><td class="item-table-title">参与比赛</td><td>{{item.competition}}</td></tr>
 					  		<tr><td class="item-table-title">团队成员</td><td><span class="item-table-listItem" ng-repeat="m in item.members">{{m}}</span></td></tr>
 					  		<tr><td class="item-table-title">团队技能</td><td><span class="label label-success item-table-listItem" ng-repeat="s in item.skills">{{s}}</span></td></tr>
 					  		<tr><td class="item-table-title">需求技能</td><td><span class="label label-info item-table-listItem" ng-repeat="rs in item.require_skills">{{rs}}</span></td></tr>
@@ -142,7 +142,7 @@
 					  	<img class="item-img img-thumbnail" ng-src="{{item.img}}">
 					  		<h2 class="item-title">{{item.name}}</h2>
 					  		<table class="table table-striped">
-					  		<tr><td class="item-table-title">比赛</td><td>{{item.match}}</td></tr>
+					  		<tr><td class="item-table-title">比赛</td><td>{{item.competition}}</td></tr>
 					  		<tr><td class="item-table-title">成员</td><td><span class="item-table-listItem" ng-repeat="m in item.team_members">{{m}}</span></td></tr>
 					  		<tr><td class="item-table-title">点评</td><td>{{item.comment}}</td></tr>	
 					  		</table>

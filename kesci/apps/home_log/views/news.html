@@ -2,14 +2,14 @@
 		<div class="col-md-8">
 			<div class="content-box">
 				<div class="content-box-heading">关注的比赛</div>
-				<div ng-show="!followed_match||followed_match.length<1" class="content-box-empty-info"> 暂无内容</div>
-				<div class="content-box-item" ng-repeat="item in followed_match">						
+				<div ng-show="!followed_competition||followed_competition.length<1" class="content-box-empty-info"> 暂无内容</div>
+				<div class="content-box-item" ng-repeat="item in followed_competition">						
 					  		
 					  		<div class="row">		
 					  			<div class="col-sm-3"><img class="content-box-item-img img-thumbnail"  ng-src="{{item.img}}"></div>	
 					  			<div class="col-sm-9 content-box-item-detail">	
 					  			<div class="item-title">{{item.name}} 
-					  				<span >{{match_stage_map[item.stage]}}</span>					  				
+					  				<span >{{competition_stage_map[item.stage]}}</span>					  				
 					  			</div>
 					  			<table class="table table-striped">						  		
 							  		<tr>
@@ -43,10 +43,10 @@
 				<tr class="friend-news-item" ng-repeat="item in friend_news">
 					<td class="friend-news-img-warpper"><img class="content-box-item-img img-thumbnail img-circle"  ng-src="{{item.img}}"></td>
 					<td class="friend-news-content">					
-							<span ng-show="item.type=='friend_join_team'"><b>{{item.friend}}</b> 加入了团队<b> {{item.team}}</b> , 参加比赛<b> {{item.match}}</b></span>
-							<span ng-show="item.type=='friend_win_prize'"><b>{{item.friend}}</b> 在<b> {{item.match}}</b> 中获得了<b> {{item.prize}}</b></span>
-							<span ng-show="item.type=='friend_create_team'"><b>{{item.friend}}</b> 创建了团队<b> {{item.team}}</b> , 参加比赛<b> {{item.match}}</b></span>
-							<span ng-show="item.type=='friend_follow_match'"><b>{{item.friend}}</b> 关注了<b> {{item.match}}</b> </span>	
+							<span ng-show="item.type=='friend_join_team'"><b>{{item.friend}}</b> 加入了团队<b> {{item.team}}</b> , 参加比赛<b> {{item.competition}}</b></span>
+							<span ng-show="item.type=='friend_win_prize'"><b>{{item.friend}}</b> 在<b> {{item.competition}}</b> 中获得了<b> {{item.prize}}</b></span>
+							<span ng-show="item.type=='friend_create_team'"><b>{{item.friend}}</b> 创建了团队<b> {{item.team}}</b> , 参加比赛<b> {{item.competition}}</b></span>
+							<span ng-show="item.type=='friend_follow_competition'"><b>{{item.friend}}</b> 关注了<b> {{item.competition}}</b> </span>	
 									
 					</td>					
 				</tr>			
@@ -56,7 +56,7 @@
 		<div class="col-md-4">
 			<div id="news-recommed-div" class="content-box">
 				<div class="content-box-heading">推荐比赛</div>
-				<div ng-repeat="item in recommed_match" class="recommed-item">
+				<div ng-repeat="item in recommed_competition" class="recommed-item">
 					<div class="item-title">{{item.name}}</div>
 					<table class="table table-striped">
 				  		<tr><td class="item-table-title">主办方</td><td>{{item.host}}</td></tr>
@@ -71,7 +71,7 @@
 		  		<div ng-repeat="item in recommed_team" class="recommed-item">
 					<div class="item-title">{{item.name}}</div>
 			  		<table class="table table-striped">
-				  		<tr><td class="item-table-title">比赛</td><td>{{item.match}}</td></tr>
+				  		<tr><td class="item-table-title">比赛</td><td>{{item.competition}}</td></tr>
 				  		<tr><td class="item-table-title">成员</td><td><span class="item-table-listItem" ng-repeat="m in item.members">{{m}}</span></td></tr>
 				  		<tr><td class="item-table-title">技能</td><td><span class="label label-success item-table-listItem" ng-repeat="s in item.skills">{{s}}</span></td></tr>
 				  		<tr><td class="item-table-title">需求</td><td><span class="label label-info item-table-listItem" ng-repeat="rs in item.require_skills">{{rs}}</span></td></tr>

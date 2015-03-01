@@ -12,11 +12,11 @@ function($scope,$rootScope) {
 myAppModule.controller('newsCtr',
 function($scope) {
 
-	$scope.match_stage_map={"not_start":"报名中","ongoing":"进行中","finished":"作品评选中","result":"结果揭晓"}
+	$scope.competition_stage_map={"not_start":"报名中","ongoing":"进行中","finished":"作品评选中","result":"结果揭晓"}
 	
-	$scope.followed_match=[{
+	$scope.followed_competition=[{
 		name:"超级码力程序设计竞赛",
-		match_id:"123213",
+		competition_id:"123213",
 		stage:"not_start",
 		host:"Avazu",
 		type:"程序开发",
@@ -29,7 +29,7 @@ function($scope) {
 	},
 	{
 		name:"超级码力程序设计竞赛",
-		match_id:"123213",
+		competition_id:"123213",
 		host:"Avazu",
 		type:"程序开发",		
 		stage:"ongoing",		
@@ -39,7 +39,7 @@ function($scope) {
 	},
 	{
 		name:"超级码力程序设计竞赛",
-		match_id:"123213",
+		competition_id:"123213",
 		host:"Avazu",
 		type:"程序开发",		
 		stage:"finished",		
@@ -49,7 +49,7 @@ function($scope) {
 	},
 	{
 		name:"超级码力程序设计竞赛",
-		match_id:"123213",
+		competition_id:"123213",
 		host:"Avazu",
 		type:"程序开发",
 		win_teams:["猪八戒背媳妇","好想吃粽子","高铁侠"],
@@ -64,7 +64,7 @@ function($scope) {
 		img:"images/d.jpg",
 		time:"2014-2-16 23:11:12",
 		type:"friend_win_prize",
-		match:"超级码力程序设计竞赛",
+		competition:"超级码力程序设计竞赛",
 		prize:"一等奖"
 	},
 	{
@@ -73,7 +73,7 @@ function($scope) {
 		time:"2014-2-16 23:11:12",
 		type:"friend_join_team",
 		team:"猪八戒背媳妇",
-		match:"超级码力程序设计竞赛",
+		competition:"超级码力程序设计竞赛",
 	},
 	{
 		friend:"赵信",
@@ -81,21 +81,21 @@ function($scope) {
 		time:"2014-2-16 23:11:12",
 		type:"friend_create_team",
 		team:"猪八戒背媳妇",
-		match:"超级码力程序设计竞赛"
+		competition:"超级码力程序设计竞赛"
 	},
 	
 	{
 		friend:"周小胖",
 		img:"images/e.jpg",
 		time:"2014-2-16 23:11:12",
-		type:"friend_follow_match",
-		match:"超级码力程序设计竞赛"
+		type:"friend_follow_competition",
+		competition:"超级码力程序设计竞赛"
 	}
 	];
-	$scope.recommed_match=[
+	$scope.recommed_competition=[
 	{
 		name:"超级码力程序设计竞赛",
-		match_id:"123213",
+		competition_id:"123213",
 		host:"Avazu",
 		type:"程序开发",
 		district:"不限",
@@ -106,7 +106,7 @@ function($scope) {
 		];
 	$scope.recommed_team=[{
 		name:"梦之队",
-		match:"AVAZU Holding 程序猿的崛起",		
+		competition:"AVAZU Holding 程序猿的崛起",		
 		members:["郭冬临","冯巩","周杰伦","东尼大木"],
 		skills:["PHP","JavaScript","MySql"],
 		require_skills:["Web Design","Project Manage","HTML5"],		
@@ -132,10 +132,10 @@ function($scope) {
 
 myAppModule.controller('mineCtr',
 function($scope) {
-	$scope.match_stage_map={"not_start":"报名中","ongoing":"进行中","finished":"作品评选中","result":"结果揭晓"};
-	$scope.my_match=[{
+	$scope.competition_stage_map={"not_start":"报名中","ongoing":"进行中","finished":"作品评选中","result":"结果揭晓"};
+	$scope.my_competition=[{
 		name:"超级码力程序设计竞赛",
-		match_id:"123213",
+		competition_id:"123213",
 		stage:"not_start",
 		host:"Avazu",
 		type:"程序开发",
@@ -147,7 +147,7 @@ function($scope) {
 		team_num:12,
 		my_team:{
 			name:"梦之队",
-			match:"超级码力程序设计竞赛",		
+			competition:"超级码力程序设计竞赛",		
 			members:["郭冬临","冯巩","周杰伦","东尼大木"],
 			skills:["PHP","JavaScript","MySql"],
 			require_skills:["Web Design","Project Manage","HTML5"],		
@@ -158,7 +158,7 @@ function($scope) {
 	},
 	{
 		name:"超级码力程序设计竞赛",
-		match_id:"123213",
+		competition_id:"123213",
 		stage:"not_start",
 		host:"Avazu",
 		type:"程序开发",
@@ -170,7 +170,7 @@ function($scope) {
 		team_num:12,
 		my_team:{
 			name:"梦之队",
-			match:"AVAZU Holding 程序猿的崛起",		
+			competition:"AVAZU Holding 程序猿的崛起",		
 			members:["郭冬临","冯巩","周杰伦","东尼大木"],
 			skills:["PHP","JavaScript","MySql"],
 			require_skills:["Web Design","Project Manage","HTML5"],		
@@ -181,7 +181,7 @@ function($scope) {
 	},
 	{
 		name:"超级码力程序设计竞赛",
-		match_id:"123213",
+		competition_id:"123213",
 		stage:"not_start",
 		host:"Avazu",
 		type:"程序开发",
@@ -193,7 +193,7 @@ function($scope) {
 		team_num:12,
 		my_team:{
 			name:"梦之队",
-			match:"AVAZU Holding 程序猿的崛起",		
+			competition:"AVAZU Holding 程序猿的崛起",		
 			members:["郭冬临","冯巩","周杰伦","东尼大木"],
 			skills:["PHP","JavaScript","MySql"],
 			require_skills:["Web Design","Project Manage","HTML5"],		
@@ -210,12 +210,25 @@ function($scope) {
 	$scope.selectSource={
 		skillList:["JavaScript","PHP","MySQL","AngularJS","CSS","SilverLight",".Net"],
 		districtList:["北京","上海","杭州","武汉"],
-		matchList:["12123","23123"]
+		competitionList:["12123","23123"]
 	};	
-	$scope.teamSearch_selectedSkills=[];
-	$scope.peopleSearch_selectedSkills=[];
+	$scope.clearAllForms=function(){	
+		$scope.competitionSearch_name="";
+		$scope.competitionSearch_selectedDistrict=[];
+		$scope.competitionSearch_selectedType=[];
+		$scope.competitionSearch_selectedTime="不限";
+		$scope.teamSearch_name="";
+		$scope.teamSearch_selectedCompetition=[];
+		$scope.teamSearch_selectedDistrict=[];
+		$scope.teamSearch_selectedSkill=[];
+		$scope.peopleSearch_name=[];
+		$scope.peopleSearch_selectedCompetition=[];
+		$scope.peopleSearch_selectedDistrict=[];
+		$scope.peopleSearch_selectedSkill=[];
+	}
 
-	$scope.addSkillLabel=function (model,labels) {
+	$scope.clearAllForms();
+	$scope.addLabel=function (model,labels) {
 		if(!labels||labels.length<1){
 			return
 		}
@@ -227,7 +240,7 @@ function($scope) {
 			model.push(label);
 		}		
 	}
-	$scope.deleteSkillLabel=function(model,label){
+	$scope.removeLabel=function(model,label){
 		var idx = model.indexOf(label);
 		if(!label||idx<0){
 			return;
