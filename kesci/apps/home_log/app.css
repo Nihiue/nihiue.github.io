@@ -20,3 +20,11 @@
 .item-table-listItem{margin-right: 0.5em;display: inline-block;}
 .navbar{box-shadow: #aaa 1px 1px 5px;}
 .discover-label-container{padding: 0.5em 0;font-size: 1.2em;}
+.profile-img{display: block;width: 100%;height: auto;max-width: 180px;margin: 0 auto}
+.profile-name{text-align: center;font-size: 18px;font-weight: bold;padding: 1em;}
+.profile-heading{padding-top: 2em}
+.table>tbody>tr>td{vertical-align: middle;}
+.profile-table>tbody>tr>td{padding:1em}
+.profile-label-containera{padding: 0.5em 0;font-size: 1.2em;width: 12em;}
+.profile-subtile{padding:1em 0;}
+.profile-well-container{padding:1em 0em;border-bottom:1px solid #DDDDDD;}

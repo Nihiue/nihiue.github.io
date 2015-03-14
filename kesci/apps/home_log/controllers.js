@@ -250,6 +250,84 @@ function($scope) {
 
 	 
 });
+myAppModule.controller('usercenter_profile',
+function($scope) {
+	$scope.removePfRecord=function(model,index){confirm("删除此记录?")?model.splice(index,1):0};
+	$scope.selectSource={
+		skillList:["JavaScript","PHP","Dota","WoW","MySQL","AngularJS","CSS","SilverLight",".Net"],
+		interestsList:["数据分析","python","ML"],
+		districtList:["上海","北京","广州"],
+		universityList:["上海交大","复旦大学","华东师大"]
+	};	
+	$scope.myprofile={
+            "user_id":"1111",
+            "name":"周小胖",
+            "district":"上海",
+            "university":"上海交大",
+            "skills":["PHP","Dota","WoW"],
+            "interests":["数据分析","python"],
+            "bref_intro":"Without a sense of identity, there can be no real struggle.",
+            "current_competition":"Avazu编程大赛",
+            "last_online":"一天前",
+            "reply_rate":"90%",
+            "avg_reply_time":"24小时",
+            "img":"images/e.jpg",    
+            "competitions_exps":[{
+				    "start_date":"2014-01-02",
+				    "end_date":"2014-02-04",
+					"competition_name":"美国数学建模大赛",
+					"award":"一等奖",
+				    "project_url":"www.baidu.com",
+				    "kesci_competition":"True",
+				},{
+				    "start_date":"2014-01-02",
+				    "end_date":"2014-02-04",
+					"competition_name":"美国数学建模大赛",
+					"award":"二等奖",
+				    "project_url":"www.baidu.com",
+				    "kesci_competition":"True",
+				},{
+				    "start_date":"2014-01-02",
+				    "end_date":"2014-02-04",
+					"competition_name":"美国数学建模大赛",
+					"award":"三等奖",
+				    "project_url":"www.baidu.com",
+				    "kesci_competition":"True",
+				}],
+			"edu_exps":[{
+			    "start_date":"2014-01-02",
+			    "end_date":"2014-02-04",
+			    "university":"上海交通大学",
+			    "department":"数学系",
+			    "major":"应用统计",
+			    "level":"研究生"    
+				},
+				{
+			    "start_date":"2014-01-02",
+			    "end_date":"2014-02-04",
+			    "university":"上海交通大学",
+			    "department":"数学系",
+			    "major":"应用统计",
+			    "level":"研究生"    
+			}],
+			"practice_exps":[{
+	            "id":"111",
+	            "start_date":"2014-01-02",
+	            "end_date":"2014-02-04",
+	            "organzition":"中国银联信用卡中心",
+	            "job":"数据分析实习生",
+	            "description":"数据分析和建模"
+            },
+            {
+	            "id":"111",
+	            "start_date":"2014-01-02",
+	            "end_date":"2014-02-04",
+	            "organzition":"中国银联信用卡中心",
+	            "job":"数据分析实习生",
+	            "description":"数据分析和建模"
+            }]                   
+};
+});
 
 myAppModule.config(['$routeProvider',function ($routeProvider) {
     $routeProvider
@@ -264,7 +342,11 @@ myAppModule.config(['$routeProvider',function ($routeProvider) {
         .when('/discover', {
             templateUrl: 'views/discover.html',
             controller: 'discoverCtr'
-        })        
+        }) 
+        .when('/usercenter/profile', {
+            templateUrl: 'views/usercenter/profile.html',
+            controller: 'usercenter_profile'
+        })       
         .otherwise({
             redirectTo: '/news'
         });
