@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">    
+    <title>Kesci</title> 
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../shared/css/global.css">
+    <link rel="stylesheet" href="app.css">	   
+	<script src="../../bower_components/angular/angular.min.js"></script>
+	<script src="controllers_emc.js"></script>
+
+</head>
+
+<body ng-app="myApp" style="background:white">
+	<div id="page-header" ng-controller="headerCtr">
+		<div id="pin-div">
+
+			<div id="pin-div-button" ng-click="showPindiv=!showPindiv;console.log('asd');">意见反馈</div>
+			 <div id="pin-div-content" ng-show="showPindiv">			
+				<form>
+				  <div class="form-group">	
+				  	<label class="control-label">您的邮箱:</label>		    
+				    <input type="email" class="form-control" placeholder="请在此处填写您的邮箱">
+				  </div>
+				  <div class="form-group">	
+				  	<label class="control-label">您的意见:</label>		  		    
+				    <textarea class="form-control" placeholder="请在此处填写您的意见"  rows="5"></textarea>
+				  </div>
+				  <button type="submit" class="btn btn-primary">提 交</button> 
+				  <button class="btn btn-default" ng-click="showPindiv=false">取 消</button>
+				</form>
+			</div>
+		</div>
+	<div class="container">
+		<div class="row">
+		  <div id="header-logo" class="col-md-6">
+		  <h1>Kesci</h1>
+		  <h2>国内最好的校园竞赛平台</h2>
+		  </div>
+		  <div class="col-md-6" >
+		   <div id="header-form">
+			  <div ng-show="!isReg">
+				  <div class="header-form-header">
+					  <span>登录 Kesci</span>
+					  <a class="form-link" ng-click="isReg=true" href="#">去注册 <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
+				  </div>
+				  <form>
+				  <div class="form-group">			    
+				    <input type="email" class="form-control" placeholder="Email">
+				  </div>
+				  <div class="form-group">			    
+				    <input type="password" class="form-control" placeholder="Password">
+				  </div>			  
+				  <div class="checkbox">
+				    <label>
+				      <input type="checkbox"> 记住我
+				    </label>
+				    <a class="form-link">忘记密码?</a>
+				  </div>
+				  <button type="submit" class="btn btn-default">登 录</button>
+				</form>
+			</div>  
+			<div ng-show="isReg">
+				<div class="header-form-header">
+				  <span>注册 Kesci<span>
+				  <a class="form-link" ng-click="isReg=false" href="#">去登录 <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
+				</div>
+				<form>
+				  <div class="form-group">			    
+				    <input class="double-input form-control" type="text" placeholder="姓">
+				    <span class="double-input-spacing"></span> 
+				    <input class="double-input form-control"  type="text" placeholder="名">
+				  </div>
+				  <div class="form-group">			    
+				    <input type="email" class="form-control" placeholder="邮箱">
+				  </div>					
+				   <div class="form-group">			    
+				    <input type="password" class="form-control" placeholder="密码">
+				  </div>	
+				   <div class="form-group">			    
+				    <input type="password" class="form-control" placeholder="重复密码">
+				  </div>	
+				   <div class="form-group">			    
+				    <input type="text" class="form-control" placeholder="验证码">
+				  </div>  			
+				  <button type="submit" class="btn btn-default">注 册</button>
+				</form>
+			</div>
+		</div>  
+		</div>  
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="content-box" style="background:url(./images/heading.jpg) no-repeat center;background-size:cover;color:#eee;border-radius:10px;">
+		<div style="text-align:center;margin-top:100px;letter-spacing: 2px;">
+			<h1>EMC杯交大智慧校园数据分析大赛</h1>
+			<br>			
+			<p style="font-size:1.5em;">2015.3 ~ 2015.5</p>
+			<br>			
+			<table style="display:block;text-align:left;float:right">
+			<tr><td>主办单位：</td><td>交大网络信息中心</td></tr>
+			<tr><td>赞助单位：</td><td>EMC</td></tr>
+			<tr><td>指导单位：</td><td>交大学指委</td></tr>
+			<tr><td>承办单位：</td><td>Kesci校园比赛平台</td></tr>
+			<tr><td>协办单位：</td><td>电院学生会、交大数据分析俱乐部</td></tr>
+		</table>	
+		</div>
+
+	</div>
+	<div class="center-block" style="width:80%;color:#555;max-width:600px;font-size:1.2em;line-height:1.8em;letter-spacing: 1px;">
+		<h2 style="text-align:center">—— 活动概述 ——</h2>
+		<br>
+		<ul>
+		<li>运用数据，开放校园数据、设计分析主题、构建数据生态。</li>
+		<li>锻炼学生能力，帮助更多学生学习数据技术、熟悉数据分析、了解数据思维，提高学生的综合素质、技术水平和思辨能力。</li>
+		<li>优化校园服务，借助数据分析的成果降低校园餐饮系统的浪费，提高师生用餐的满意度。</li>
+		<li>激发数据文化，通过学习、培训、比赛，激发上海高校的数据文化，激发师生参与到大数据时代的数据分析实践之中。</li>
+		</ul>
+		<br><br>
+		<h2 style="text-align:center">—— 比赛内容 ——</h2>
+		<br>
+		<b>赛题一：校园餐饮消费分析</b>
+		<ul>
+		<li>分析交大餐饮消费的规律受到哪些外部因素的影响，如互联网外卖行业、天气、
+季节、食堂地理位置、学期考试安排。</li>
+		<li>使用Excel、Python、R等数据分析软件。</li>
+		<li>优化校园服务，借助数据分析的成果降低校园餐饮系统的浪费，提高师生用餐的满意度。</li>
+		<li>通过可视化或数学模型，形成12页以内PPT形式数据分析报告和数据分析程序，
+基于数据分析提出政策建议，从而改进食堂的经营效益，提高服务师生的水平。</li>
+		</ul>		
+		<b>赛题二：校园无线网络流量分析</b>
+		<ul>
+		<li>分析交大学生上网行为数据，进行可视化或数学建模分析，了解学生上网行为的
+总体特征、发展趋势和潜在问题。</li>
+		<li>使用Excel、Python、R等数据分析软件。</li>		
+		<li>可从上网时间、上网位置、上网站点等维度展开数据分析，通过数学模型和可视化分析，得到12页以内PPT形式数据分析报告和数据分析程序。改善校园网络管理的工作，并对学生上网行为提出建议，从而更合理地使用网络资源。</li>
+		</ul>
+		<p>团队成员由1-5人构成，参赛团队可以选择任一题目展开分析项目。</p>
+		<p>提交作品格式：数据分析程序代码	 +	12页PPT以内的数据分析报告</p>
+		<br><br>
+	<h2 style="text-align:center">—— 比赛奖项 ——</h2>
+	<br>
+	<table style="display:block;width:12em;" class="center-block">
+			<tr><td>综合分析大奖</td><td>：1万元</td></tr>
+			<tr><td>最佳可视化</td><td>：3千元</td></tr>
+			<tr><td>最佳数学建模</td><td>：3千元</td></tr>
+			<tr><td>最佳政策建议</td><td>：3千元</td></tr>
+			<tr><td>最佳Excel应用</td><td>：3千元</td></tr>
+			<tr><td>最佳R语言应用</td><td>：3千元</td></tr>
+	</table>	
+
+<br><br>
+	<h2 style="text-align:center">—— 赛事日程 ——</h2>
+	<br>
+		<table style="display:block;width:20em;" class="center-block">
+			<tr><td>3月20日</td><td>：完成比赛的准备工作</td></tr>
+			<tr><td>3月30日</td><td>：开始上线宣传</td></tr>
+			<tr><td>5月 7日</td><td>：截止报名和作品上传</td></tr>
+			<tr><td>5月13日</td><td>：交大现场决赛并公布赛事获奖团队</td></tr>		
+	</table>	
+
+	</div>
+
+
+</div>
+<div ng-include src="'../shared/views/footer.html'"></div>
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>	
+</body>
+</html>
