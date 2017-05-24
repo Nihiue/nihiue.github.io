@@ -29,13 +29,13 @@
 
 
 
-<link rel="canonical" href="http://nihi.me/2017/05/24/chrome-file-input-bug/"/>
+<link rel="canonical" href="https://nihiue.github.io/2017/05/24/chrome-file-input-bug/"/>
 
 
 <meta name="description" content="表单中的文件选择控件在前端开发中使用很多，看起来并没有什么玄机。 可是人生处处有惊喜，这么一个简单的控件却引出了一个奇怪的 bug，差点让老司机也翻了车。 案发现场我厂使用的是七牛CDN， 自然在前端有文件上传的需求时引入了 七牛 JS SDK。 开发过程略去不表，需求很快完成。 然而测试时却出现了诡异的问题： 在 Chrome 中点击上传文件后，常常数秒才能弹出文件选择框，而且这个延迟不定，在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Chrome 文件上传控件 bug">
-<meta property="og:url" content="http://nihi.me/2017/05/24/chrome-file-input-bug/index.html">
+<meta property="og:url" content="https://nihiue.github.io/2017/05/24/chrome-file-input-bug/index.html">
 <meta property="og:site_name" content="Nihiue&#39;s Blog">
 <meta property="og:description" content="表单中的文件选择控件在前端开发中使用很多，看起来并没有什么玄机。 可是人生处处有惊喜，这么一个简单的控件却引出了一个奇怪的 bug，差点让老司机也翻了车。 案发现场我厂使用的是七牛CDN， 自然在前端有文件上传的需求时引入了 七牛 JS SDK。 开发过程略去不表，需求很快完成。 然而测试时却出现了诡异的问题： 在 Chrome 中点击上传文件后，常常数秒才能弹出文件选择框，而且这个延迟不定，在">
 <meta property="og:updated_time" content="2017-05-24T15:03:00.966Z">
@@ -71,7 +71,9 @@
     <title> Chrome 文件上传控件 bug · Nihiue's Blog </title>
   </head>
 
-  <body><div id="mobile-navbar" class="mobile-navbar">
+  <body><img style="display:none" src="/wechat_pic.jpg">
+
+<div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
     <a href="/." class="logo">Nihiue's Blog</a>
   </div>
@@ -119,7 +121,7 @@
           <a class="menu-item-link" href="/">
             
             
-              Home
+              首页
             
           </a>
         </li>
@@ -128,7 +130,7 @@
           <a class="menu-item-link" href="/archives/">
             
             
-              Archives
+              归档
             
           </a>
         </li>
@@ -163,7 +165,7 @@
     
     
   <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
+    <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
       <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#案发现场"><span class="toc-text">案发现场</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#谁是真凶"><span class="toc-text">谁是真凶</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#山重水复"><span class="toc-text">山重水复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#盲生，你发现了华点"><span class="toc-text">盲生，你发现了华点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#锁定证据"><span class="toc-text">锁定证据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-text">后记</span></a></li></ol>
     </div>
@@ -219,16 +221,16 @@
 
   <div class="post-copyright">
     <p class="copyright-item">
-      <span>Author: </span>
+      <span>作者: </span>
       <span>Nihiue(Wanglei)</span>
     </p>
     <p class="copyright-item">
-      <span>Origin: </span>
-      <a href="http://nihi.me">http://nihi.me</a>
+      <span>来源: </span>
+      <a href="https://nihiue.github.io">https://nihiue.github.io</a>
     </p>
     <p class="copyright-item">
-      <span>Link: </span>
-      <a href="http://nihi.me/2017/05/24/chrome-file-input-bug/">http://nihi.me/2017/05/24/chrome-file-input-bug/</a>
+      <span>链接: </span>
+      <a href="https://nihiue.github.io/2017/05/24/chrome-file-input-bug/">https://nihiue.github.io/2017/05/24/chrome-file-input-bug/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -241,24 +243,6 @@
 
       
       
-  <div class="post-reward">
-    <input type="checkbox" name="reward" id="reward" hidden />
-    <label class="reward-button" for="reward">Reward</label>
-    <div class="qr-code">
-      
-      
-        <label class="qr-code-image" for="reward">
-          <img class="image" src="/image/reward/wechat.png" title="wechat">
-        </label>
-      
-      
-        <label class="qr-code-image" for="reward">
-          <img class="image" src="/image/reward/alipay.png" title="alipay">
-        </label>
-      
-    </div>
-  </div>
-
     
 
     
@@ -325,11 +309,11 @@
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
   </span>
   
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
   </span>
 
