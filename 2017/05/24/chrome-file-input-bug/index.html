@@ -12,6 +12,8 @@
 
 
 
+  <meta name="description" content="Chrome 文件上传控件 bug"/>
+
 
 
 
@@ -27,15 +29,19 @@
 
 
 
-<link rel="canonical" href="https://nihi.me/"/>
+<link rel="canonical" href="https://nihi.me/2017/05/24/chrome-file-input-bug/"/>
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Nihiue&#39;s Blog">
-<meta property="og:url" content="https://nihi.me/index.html">
+<meta name="description" content="表单中的文件选择控件在前端开发中使用很多，看起来并没有什么玄机。 可是人生处处有惊喜，这么一个简单的控件却引出了一个奇怪的 bug，差点让老司机也翻了车。 案发现场我厂使用的是七牛CDN， 自然在前端有文件上传的需求时引入了 七牛 JS SDK。 开发过程略去不表，需求很快完成。 然而测试时却出现了诡异的问题： 在 Chrome 中点击上传文件后，常常数秒才能弹出文件选择框，而且这个延迟不定，在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chrome 文件上传控件 bug">
+<meta property="og:url" content="https://nihi.me/2017/05/24/chrome-file-input-bug/index.html">
 <meta property="og:site_name" content="Nihiue&#39;s Blog">
+<meta property="og:description" content="表单中的文件选择控件在前端开发中使用很多，看起来并没有什么玄机。 可是人生处处有惊喜，这么一个简单的控件却引出了一个奇怪的 bug，差点让老司机也翻了车。 案发现场我厂使用的是七牛CDN， 自然在前端有文件上传的需求时引入了 七牛 JS SDK。 开发过程略去不表，需求很快完成。 然而测试时却出现了诡异的问题： 在 Chrome 中点击上传文件后，常常数秒才能弹出文件选择框，而且这个延迟不定，在">
+<meta property="og:updated_time" content="2017-05-24T15:03:00.966Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nihiue&#39;s Blog">
+<meta name="twitter:title" content="Chrome 文件上传控件 bug">
+<meta name="twitter:description" content="表单中的文件选择控件在前端开发中使用很多，看起来并没有什么玄机。 可是人生处处有惊喜，这么一个简单的控件却引出了一个奇怪的 bug，差点让老司机也翻了车。 案发现场我厂使用的是七牛CDN， 自然在前端有文件上传的需求时引入了 七牛 JS SDK。 开发过程略去不表，需求很快完成。 然而测试时却出现了诡异的问题： 在 Chrome 中点击上传文件后，常常数秒才能弹出文件选择框，而且这个延迟不定，在">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
@@ -62,7 +68,7 @@
 
 
 
-    <title> Nihiue's Blog </title>
+    <title> Chrome 文件上传控件 bug · Nihiue's Blog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -138,14 +144,12 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
-  <section id="posts" class="posts">
-    
-      
+  
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
         
-          <a class="post-link" href="/2017/05/24/chrome-file-input-bug/">Chrome 文件上传控件 bug</a>
+          Chrome 文件上传控件 bug
         
       </h1>
 
@@ -158,14 +162,17 @@
 
     
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#案发现场"><span class="toc-text">案发现场</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#谁是真凶"><span class="toc-text">谁是真凶</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#山重水复"><span class="toc-text">山重水复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#盲生，你发现了华点"><span class="toc-text">盲生，你发现了华点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#锁定证据"><span class="toc-text">锁定证据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-text">后记</span></a></li></ol>
+    </div>
+  </div>
+
 
     <div class="post-content">
       
-        
-        
-
-        
-          <p>表单中的文件选择控件在前端开发中使用很多，看起来并没有什么玄机。 可是人生处处有惊喜，这么一个简单的控件却引出了一个奇怪的 bug，差点让老司机也翻了车。</p>
+        <p>表单中的文件选择控件在前端开发中使用很多，看起来并没有什么玄机。 可是人生处处有惊喜，这么一个简单的控件却引出了一个奇怪的 bug，差点让老司机也翻了车。</p>
 <h2 id="案发现场"><a href="#案发现场" class="headerlink" title="案发现场"></a>案发现场</h2><p>我厂使用的是七牛CDN， 自然在前端有文件上传的需求时引入了 <a href="https://developer.qiniu.com/kodo/sdk/1283/javascript" target="_blank" rel="external">七牛 JS SDK</a>。</p>
 <p>开发过程略去不表，需求很快完成。 然而测试时却出现了诡异的问题： 在 Chrome 中点击上传文件后，常常数秒才能弹出文件选择框，而且这个延迟不定，在 Windows 上和 MacOS 上都可以复现。</p>
 <h2 id="谁是真凶"><a href="#谁是真凶" class="headerlink" title="谁是真凶"></a>谁是真凶</h2><p>作为一名老司机，遇到这种情况自然是不慌。</p>
@@ -203,28 +210,79 @@
 </ul>
 <p>欢迎邮件 nihiue@gmail.com 套磁，大家交个朋友也是好的嘛</p>
 
-        
       
     </div>
 
     
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>作者: </span>
+      <span>Nihiue(Wanglei)</span>
+    </p>
+    <p class="copyright-item">
+      <span>来源: </span>
+      <a href="https://nihi.me">https://nihi.me</a>
+    </p>
+    <p class="copyright-item">
+      <span>链接: </span>
+      <a href="https://nihi.me/2017/05/24/chrome-file-input-bug/">https://nihi.me/2017/05/24/chrome-file-input-bug/</a>
+    </p>
+
+    <p class="copyright-item lincese">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
 
     
 
-  </article>
-
     
-  </section>
-
-  
-  <nav class="pagination">
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
     
     
   </nav>
 
+      </footer>
+    
+
+  </article>
+
 
           </div>
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>  
       </main>
@@ -297,6 +355,12 @@
     </div>
 
     
+  
+
+  
+  
+
+
 
 
     
