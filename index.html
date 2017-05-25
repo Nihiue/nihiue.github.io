@@ -165,12 +165,11 @@
         
 
         
-          <p>表单中的文件选择控件在前端开发中使用很多，看起来并没有什么玄机。 可是人生处处有惊喜，这么一个简单的控件却引出了一个奇怪的 bug，差点让老司机也翻了车。</p>
+          <p>表单中的 file input 在前端开发中使用很多，看起来并没有什么玄机。 可是人生处处有惊喜，这么一个简单的控件却引出了一个奇怪的 bug，差点让老司机也翻了车。</p>
 <h2 id="案发现场"><a href="#案发现场" class="headerlink" title="案发现场"></a>案发现场</h2><p>我厂使用的是七牛CDN，自然在前端有文件上传的需求时引入了 <a href="https://developer.qiniu.com/kodo/sdk/1283/javascript" target="_blank" rel="external">七牛 JS SDK</a>。</p>
 <p>开发过程略去不表，需求很快完成。 然而上线后却出现了诡异的问题： 在 Chrome 中点击上传文件后，常常数秒才能弹出文件选择框，而且这个延迟不定，在 Windows 上和 MacOS 上都可以复现。</p>
 <h2 id="谁是真凶"><a href="#谁是真凶" class="headerlink" title="谁是真凶"></a>谁是真凶</h2><p>作为一名老司机，遇到这种情况自然是不慌。</p>
 <p>先从七牛的 SDK 查起，粗粗看了一下实现，七牛只是在 <a href="http://www.plupload.com/" target="_blank" rel="external">plupload</a> 外面封装了一层完成一些权限校验之类的操作，实际上传管理都是 plupload 完成的。 去 plupload 的 Github 搜了一下 issue，看起来 <a href="https://github.com/moxiecode/plupload/issues/1404" target="_blank" rel="external">这个问题</a> 并不是个例，可是这些讨论也没有提供什么信息量。</p>
-<p>既然没有现成的解决方案，只能自己探索了。</p>
 <p>plupload 的机制是在表单中插入一个隐藏的 file input，当用户点击自定义的文件上传按钮时，触发隐藏的 input 的 <code>click</code> 事件，从而实现功能。</p>
 <p>这个实现应当说是比较符合直觉的，初步考虑可能是 Chrome 对于不可见的 file input 有特殊的安全策略，事件代理机制导致了延迟。</p>
 <p>为了排除这个可能性，写了一个原生写法的最小实现</p>
@@ -179,7 +178,6 @@
 <h2 id="山重水复"><a href="#山重水复" class="headerlink" title="山重水复"></a>山重水复</h2><p>考虑了一下，这个问题只在 Chrome 上出现，Safari 和 Edge 及 IE 上没问题，并且可以跨操作系统复现，应该是个 Chrome 的 bug。</p>
 <p>放狗去搜了一下 “Chrome file input popup lag” 的内容：<a href="https://stackoverflow.com/questions/39187857/inputfile-accept-image-open-dialog-so-slow-with-chrome" target="_blank" rel="external">Stack Overflow 上的讨论</a> | <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=638874" target="_blank" rel="external">Chromium Issue 638874</a></p>
 <p>类似表现的 issue 有一堆，和之前 Github 上的讨论差不多，不光是浏览器使用者搞不清状况，连 Chromium 团队也是一脸懵逼。</p>
-<p>事情到这里再次陷入僵局， 难道要我去读浏览器实现的代码？ 我曾经试图这么做过，然而效率实在太低。</p>
 <h2 id="盲生，你发现了华点"><a href="#盲生，你发现了华点" class="headerlink" title="盲生，你发现了华点"></a>盲生，你发现了华点</h2><p>这个 bug 有一个很有意思的点，就是每次延迟的时间不定，而且在不同时间，不同环境下表现也不一致。 这种不稳定性让人不得不怀疑和 IO 有什么关系。</p>
 <p>Stack Overflow 上有个叫 <code>cute_ptr</code> 老兄的 0 赞回答提供了一个细节, 他是这么说的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">I Think I may have found the reason, at least on my machine:</div><div class="line"></div><div class="line">When my internet connection is on, it opens fast the file dialog,</div><div class="line">when I turn it off, it is slow, then I turn it on again and it is fast again.</div></pre></td></tr></table></figure>
@@ -189,9 +187,9 @@
 <h2 id="锁定证据"><a href="#锁定证据" class="headerlink" title="锁定证据"></a>锁定证据</h2><p>既然有了方向，那只需要抓住证据就好<br>祭出大杀器 Fiddler，拦截全局流量，启用 TLS 解密，不出意外，果然被我抓到了这个请求:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">POST https://sb-ssl.google.com/safebrowsing/clientreport/download?key=xxxxxxxxxxxxxxxx HTTP/1.1</div><div class="line">Host: sb-ssl.google.com</div><div class="line">Connection: keep-alive</div><div class="line">Content-Length: 194</div><div class="line">Content-Type: application/octet-stream</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36</div><div class="line">Accept-Encoding: gzip, deflate, br</div><div class="line">Cookie: XXXXXXXXXXXXXX</div><div class="line"></div><div class="line"></div><div class="line">https://www.kesci.com/apps/home/XXXXXXXXXX &quot;Q</div><div class="line">https://www.kesci.com/apps/home/XXXXXXXXXX.zipP   .zip</div></pre></td></tr></table></figure>
 <p>Response 是一段16进制编码， 意义不明</p>
-<p>这个请求会在每次点击 file input 时触发， 可以看到 request body 里包括了当前页面的上下文信息，以及 file input 的属性。 从 url 上看属于 Chrome 的安全策略，我猜想应该会通过这些数据来判断钓鱼网站之类的东西。</p>
+<p>这个请求会在每次点击 file input 时触发， 可以看到 request body 里包括了当前页面的上下文信息，以及 file input 的属性。 从 url 上看属于 Chrome 的安全策略，用于检查文件下载时的安全性，但是在文件上传时也会触发这个检查，应当是个 bug。</p>
 <p>如果 Google 服务器不可达，这个请求会花费几秒钟才会失败，会阻塞选择文件对话框的弹出。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>此问题我已反馈到 <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=638874" target="_blank" rel="external">Chromium Issue 638874</a></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>此问题我已反馈到 <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=638874" target="_blank" rel="external">Chromium Issue 638874</a>，并且开发团队已经开始着手<a href="https://chromium-review.googlesource.com/c/514582/" target="_blank" rel="external">解决问题</a></p>
 <p>事后回想，这个问题我很早就遇到过了。不过那时候的场景是图片上传，当把 accept 中的 MIME 通配改为扩展名列表时可以暂时屏蔽这个 bug，当时也就没多想。 现在想来应该是不同的 accept 值会触发不同的安全策略，有些可能在本地白名单里。</p>
 <p>另外，虽然我也会使用浏览器的云服务，但是当我抓到这个请求时，还是感觉很不好，或许是我想多了吧。</p>
 <hr>
@@ -204,7 +202,7 @@
 <li>技术栈以 node / vue 为主</li>
 <li>目前已敲定 Pre-A 轮</li>
 </ul>
-<p>欢迎邮件 nihiue@gmail.com 套磁，大家交个朋友也是好的嘛</p>
+<p>欢迎邮件 nihiue@gmail.com 聊聊，大家交个朋友也是好的嘛</p>
 
         
       
