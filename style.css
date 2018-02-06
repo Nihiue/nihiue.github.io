@@ -10,7 +10,9 @@ body {
   margin: 0 auto;
 }
 
-
+#app.not-ready {
+  visibility: hidden;
+}
 .image-area {
   margin: auto;
   position: relative;
@@ -30,34 +32,33 @@ body {
   flex-shrink: 1;
 }
 .table-wrapper {
-  border-radius: 3px;
   padding: 10px;
-  max-height: 75vh;
+  max-height: 80vh;
   overflow: auto;
 }
 .toast {
   position: fixed;
   background: #e74c3c;
   text-align: center;
-  font-size: 52px;
+  font-size: 58px;
   color: #f1c40f;
-  width: 600px;
-  left: 30px;
+  width: 650px;
+  right: 8vw;
   line-height: 140px;
   height: 140px;
-  top: 30px;
+  top: 40vh;
 }
 
 .slide-fade-enter-active {
-  transition: all .8s ease;
+  transition: all 1s ease;
 }
 
 .slide-fade-leave-active {
-  transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all .7s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 
 .slide-fade-enter,
 .slide-fade-leave-to {
-  transform: translateX( -600px);
+  transform: translateX(700px);
   opacity: 0;
 }

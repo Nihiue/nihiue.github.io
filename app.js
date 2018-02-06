@@ -69,6 +69,8 @@ var app = new Vue({
       });
       this.readData();
       this.applyData();
+      const appEl = document.querySelector('#app');
+      appEl.classList.remove('not-ready');
     },
     scrollResult() {
       this.$nextTick(function() {

@@ -6,23 +6,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Lucky Dog</title>
   <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-  <link href="./style.css?v2" rel="stylesheet">
+  <link href="./style.css?v4" rel="stylesheet">
   <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
 </head>
 
 <body>
-  <div id="app">
+  <div id="app" class="not-ready">
     <div class="layout-container">
       <div class="image-area">
         <canvas id="main-canvas"></canvas>
         <canvas id="sub-canvas"></canvas>
       </div>
       <div class="table-area">
-        <button type="button" style="float:right" class="btn btn-outline-primary" data-toggle="modal" data-target="#user-list-config">配置参与者</button>
-        <h1>Lucky Dog</h1>
-        <br>
+        <div class="table-wrapper">
+          <button type="button" style="float:right" class="btn btn-outline-primary" data-toggle="modal" data-target="#user-list-config">配置参与者</button>
+          <h1>Lucky Dog</h1>
+        </div>
         <div class="table-wrapper">
           <table class="table">
             <tr>
@@ -96,8 +97,8 @@
       </div>
     </div>
   </div>
-  <script src="./turntable.js?v=3"></script>
-  <script src="./app.js?v=3"></script>
+  <script src="./turntable.js?v4"></script>
+  <script src="./app.js?v4"></script>
 </body>
 
 </html>
