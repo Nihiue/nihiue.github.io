@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Lucky Dog</title>
   <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-  <link href="./style.css" rel="stylesheet">
+  <link href="./style.css?v2" rel="stylesheet">
   <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
@@ -20,29 +20,32 @@
         <canvas id="sub-canvas"></canvas>
       </div>
       <div class="table-area">
-        <button type="button" style="float:right" class="btn btn-primary" data-toggle="modal" data-target="#user-list-config">配置参与者</button>
+        <button type="button" style="float:right" class="btn btn-outline-primary" data-toggle="modal" data-target="#user-list-config">配置参与者</button>
         <h1>Lucky Dog</h1>
         <br>
-        <table class="table">
-          <tr>
-            <th>时间</th>
-            <th>中奖者</th>
-            <th>概率</th>
-            <th>备注</th>
-            <th></th>
-          </tr>
-          <tr v-for="(item, index) in resultList" :key="item.id">
-            <td>{{item.time}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.probability}}</td>
-            <td>
-              <input type="text" class="form-control" v-model="item.note" @blur="saveResultList">
-            </td>
-            <td>
-              <button class="btn btn-sm btn-danger" @click="removeResult(index)">移除</button>
-            </td>
-          </tr>
-        </table>
+        <div class="table-wrapper">
+          <table class="table">
+            <tr>
+              <th>时间</th>
+              <th>中奖者</th>
+              <th>概率</th>
+              <th>备注</th>
+              <th></th>
+            </tr>
+            <tr v-for="(item, index) in resultList" :key="item.id">
+              <td>{{item.time}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.probability}}</td>
+              <td>
+                <input type="text" class="form-control form-control-sm" v-model="item.note" @blur="saveResultList">
+              </td>
+              <td>
+                <button class="btn btn-sm btn-outline-danger" @click="removeResult(index)">X</button>
+              </td>
+            </tr>
+          </table>
+          <div id="scroll-anchor"></div>
+        </div>
 
       </div>
     </div>
@@ -69,7 +72,7 @@
                     权重
                   </th>
                   <th>
-                    <button class="btn btn-sm btn-success" type="button" @click="addUser">添加</button>
+                    <button class="btn btn-sm btn-outline-success" type="button" @click="addUser">添加</button>
                   </th>
                 </tr>
                 <tr v-for="(item, index) in userList" :key="item.id">
@@ -80,21 +83,21 @@
                     <input type="number" class="form-control" v-model="item.weight" required>
                   </td>
                   <td>
-                    <button class="btn btn-sm btn-danger" type="button" @click="userList.splice(index, 1)">移除</button>
+                    <button class="btn btn-sm btn-outline-danger" type="button" @click="userList.splice(index, 1)">移除</button>
                   </td>
                 </tr>
               </table>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary">应用</button>
+              <button type="submit" class="btn btn-outline-primary">应用</button>
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-  <script src="./turntable.js?v=1"></script>
-  <script src="./app.js?v=1"></script>
+  <script src="./turntable.js?v=2"></script>
+  <script src="./app.js?v=2"></script>
 </body>
 
 </html>

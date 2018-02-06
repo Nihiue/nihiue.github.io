@@ -10,11 +10,11 @@ body {
   margin: 0 auto;
 }
 
+
 .image-area {
+  margin: auto;
   position: relative;
   overflow: hidden;
-  width: 1000px;
-  height: 1000px;
   flex-grow: 0;
   flex-shrink: 0;
 }
@@ -24,24 +24,27 @@ body {
 }
 
 .table-area {
-  padding: 30px;
+  padding: 30px 10px;
   min-height: 300px;
   flex-grow: 1;
   flex-shrink: 1;
-  max-height: 100vh;
+}
+.table-wrapper {
+  border-radius: 3px;
+  padding: 10px;
+  max-height: 75vh;
   overflow: auto;
 }
-
 .toast {
   position: fixed;
   background: #e74c3c;
   text-align: center;
-  font-size: 64px;
+  font-size: 52px;
   color: #f1c40f;
-  width: 800px;
-  right: 30px;
-  line-height: 160px;
-  height: 160px;
+  width: 600px;
+  left: 30px;
+  line-height: 140px;
+  height: 140px;
   top: 30px;
 }
 
@@ -55,6 +58,6 @@ body {
 
 .slide-fade-enter,
 .slide-fade-leave-to {
-  transform: translateX(800px);
+  transform: translateX( -600px);
   opacity: 0;
 }

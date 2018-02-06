@@ -21,7 +21,23 @@ var app = new Vue({
   methods: {
     initApp() {
       const self = this;
-      this.turntable = new Turntable('#main-canvas', '#sub-canvas', 1000, 1000);
+      let size = 1000;
+      //const screenSize = window.screen.width;
+      const screenSize = window.innerWidth;
+      if (screenSize < 1200) {
+        size = 600;
+      } else if (screenSize < 1400) {
+        size = 700;
+      } else if (screenSize < 1600) {
+        size = 800;
+      } else if (screenSize < 1800) {
+        size = 900;
+      }
+
+      const imageContainer = document.querySelector('.image-area');
+      imageContainer.style.width = size + 'px';
+      imageContainer.style.height = size + 'px';
+      this.turntable = new Turntable('#main-canvas', '#sub-canvas', size, size);
       this.turntable.onResult = function (val, sumWeight) {
         const now = new Date();
         self.resultList.push({
@@ -33,6 +49,7 @@ var app = new Vue({
         });
         self.saveResultList();
         self.toast(`WINNER: ${val.label}`);
+        self.scrollResult();
       };
       document.addEventListener('keyup', function (e) {
         if (e.keyCode !== 32 || self.turntable.isRunning || e.target !== document.body || self.spaceKeyStart === 0) {
@@ -52,6 +69,12 @@ var app = new Vue({
       });
       this.readData();
       this.applyData();
+    },
+    scrollResult() {
+      this.$nextTick(function() {
+        const el = document.querySelector('#scroll-anchor');
+        el && el.scrollIntoView();
+      })
     },
     addUser() {
       this.userList.push({
