@@ -4,14 +4,11 @@ var app = new Vue({
   el: '#app',
   data: function () {
     return {
-      spaceKeyStart: 0,
-      userList: [{
-        label: 'test',
-        weight: 1,
-        id: 'test'
-      }],
+      actionStartTime: 0,
+      userList: [],
       resultList: [],
       toastText: '',
+      triggerType: '',
       showToast: false
     };
   },
@@ -52,28 +49,63 @@ var app = new Vue({
         self.scrollResult();
       };
       document.addEventListener('keyup', function (e) {
-        if (e.keyCode !== 32 || self.turntable.isRunning || e.target !== document.body || self.spaceKeyStart === 0) {
+        if (e.keyCode !== 32 || e.target !== document.body) {
           return;
         }
-        const speed = Math.round((Date.now() - self.spaceKeyStart) * 0.04);
-        self.spaceKeyStart = 0;
-        self.turntable.drawSub(false);
-        self.turntable.spin(speed);
+        self.actionEnd('key');
       });
       document.addEventListener('keydown', function (e) {
-        if (e.keyCode !== 32 || e.repeat || self.turntable.isRunning || e.target !== document.body || self.spaceKeyStart !== 0) {
+        if (e.keyCode !== 32 || e.repeat || e.target !== document.body) {
           return;
         }
-        self.turntable.drawSub(true);
-        self.spaceKeyStart = Date.now();
+        self.actionStart('key');
       });
-      this.readData();
-      this.applyData();
+
+      const subEl = document.querySelector('#sub-canvas');
+
+      subEl.addEventListener('mousedown', function (e) {
+        self.actionStart('mouse');
+      });
+      subEl.addEventListener('mouseup', function (e) {
+        self.actionEnd('mouse');
+      });
+
+      subEl.addEventListener('touchstart', function (e) {
+        self.actionStart('touch');
+      });
+      subEl.addEventListener('touchend', function (e) {
+        self.actionEnd('touch');
+      });
+
       const appEl = document.querySelector('#app');
       appEl.classList.remove('not-ready');
+      this.readData();
+      this.applyData();
+    },
+    actionStart(type) {
+      console.log(type);
+      if (this.turntable.isRunning || this.triggerType) {
+        return;
+      }
+      this.triggerType = type;
+      this.turntable.drawSub(true);
+      this.actionStartTime = Date.now();
+    },
+    actionEnd(type) {
+      if (this.turntable.isRunning || type !== this.triggerType) {
+        return;
+      }
+      this.triggerType = '';
+      this.turntable.drawSub(false);
+      const delta = Date.now() - this.actionStartTime;
+      if (delta < 120) {
+        return;
+      }
+      const speed = Math.round(delta * 0.04);
+      this.turntable.spin(speed);
     },
     scrollResult() {
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         const el = document.querySelector('#scroll-anchor');
         el && el.scrollIntoView();
       })
@@ -94,6 +126,16 @@ var app = new Vue({
       const result = localStorage.getItem(LS_PREFIX + 'result');
       if (user) {
         this.userList = JSON.parse(user);
+      } else {
+        const list = [];
+        for (var i = 0; i< 13; i++) {
+          list.push({
+            label: `Item ${i}`,
+            weight: 1,
+            id: i
+          });
+        }
+        this.userList = list;
       }
       if (result) {
         this.resultList = JSON.parse(result);

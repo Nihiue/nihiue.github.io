@@ -6,10 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Lucky Dog</title>
   <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-  <link href="./style.css?v4" rel="stylesheet">
-  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="./style.css?v5" rel="stylesheet">
 </head>
 
 <body>
@@ -21,14 +19,14 @@
       </div>
       <div class="table-area">
         <div class="table-wrapper">
-          <button type="button" style="float:right" class="btn btn-outline-primary" data-toggle="modal" data-target="#user-list-config">配置参与者</button>
+          <button type="button" class="btn btn-outline-primary float-right" data-toggle="modal" data-target="#user-list-config"><i class="fa fa-cog"></i></button>
           <h1>Lucky Dog</h1>
         </div>
         <div class="table-wrapper">
-          <table class="table">
-            <tr>
+          <table class="table table-striped table-hover">
+            <tr class="thead-light">
               <th>时间</th>
-              <th>中奖者</th>
+              <th>结果</th>
               <th>概率</th>
               <th>备注</th>
               <th></th>
@@ -41,7 +39,7 @@
                 <input type="text" class="form-control form-control-sm" v-model="item.note" @blur="saveResultList">
               </td>
               <td>
-                <button class="btn btn-sm btn-outline-danger" @click="removeResult(index)">X</button>
+                <button class="btn btn-sm btn-outline-danger" @click="removeResult(index)"><i class="fa fa-remove"></i></button>
               </td>
             </tr>
           </table>
@@ -51,29 +49,29 @@
       </div>
     </div>
     <transition name="slide-fade">
-      <div class="toast" v-show="showToast">{{toastText}}</div>
+      <div class="toast" v-show="showToast"><i class="fa fa-trophy"></i> {{toastText}}</div>
     </transition>
     <div class="modal" tabindex="-1" role="dialog" id="user-list-config">
       <div class="modal-dialog modal-lg" role="document">
         <form @submit.prevent="userListSubmit">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">配置参与者</h5>
+              <h5 class="modal-title">配置</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
               <table class="table">
-                <tr>
+                <tr class="thead-light">
                   <th>
-                    姓名
+                    标签
                   </th>
                   <th style="width: 50%">
                     权重
                   </th>
                   <th>
-                    <button class="btn btn-sm btn-outline-success" type="button" @click="addUser">添加</button>
+                    <button class="btn btn-sm btn-outline-success" type="button" @click="addUser"><i class="fa fa-plus"></i></button>
                   </th>
                 </tr>
                 <tr v-for="(item, index) in userList" :key="item.id">
@@ -84,21 +82,24 @@
                     <input type="number" class="form-control" v-model="item.weight" required>
                   </td>
                   <td>
-                    <button class="btn btn-sm btn-outline-danger" type="button" @click="userList.splice(index, 1)">移除</button>
+                    <button class="btn btn-sm btn-outline-danger" type="button" @click="userList.splice(index, 1)"><i class="fa fa-remove"></i></button>
                   </td>
                 </tr>
               </table>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-outline-primary">应用</button>
+              <button type="submit" class="btn btn-outline-primary">OK</button>
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-  <script src="./turntable.js?v4"></script>
-  <script src="./app.js?v4"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+  <script src="./turntable.js?v5"></script>
+  <script src="./app.js?v5"></script>
 </body>
 
 </html>
