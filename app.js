@@ -22,8 +22,8 @@ var app = new Vue({
     initApp() {
       const self = this;
       let size = 1000;
-      //const screenSize = window.screen.width;
-      const screenSize = window.innerWidth;
+      const screenSize = window.screen.width;
+      // const screenSize = window.innerWidth;
       if (screenSize < 1200) {
         size = 600;
       } else if (screenSize < 1400) {
