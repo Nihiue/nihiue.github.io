@@ -15,26 +15,23 @@ var app = new Vue({
     this.initApp();
   },
   methods: {
+    updateImageAreaSize() {
+      const vpSize = window.innerWidth;
+      let imageSize;
+      if (vpSize <= 800) {
+        imageSize = vpSize;
+      } else {
+        imageSize = Math.min(1000, Math.round(vpSize/1.8));
+      }
+
+      const imageContainer = document.querySelector('.image-area');
+      imageContainer.style.width = imageSize + 'px';
+      imageContainer.style.height = imageSize + 'px';
+      this.turntable.setImageSize(imageSize);
+    },
     initApp() {
       const self = this;
-      let size = 1000;
-      const screenSize = window.screen.width;
-      // const screenSize = window.innerWidth;
-      if (screenSize <= 800) {
-        size = screenSize;
-      } else if (screenSize < 1200) {
-        size = 600;
-      } else if (screenSize < 1400) {
-        size = 700;
-      } else if (screenSize < 1600) {
-        size = 800;
-      } else if (screenSize < 1800) {
-        size = 900;
-      }
-      const imageContainer = document.querySelector('.image-area');
-      imageContainer.style.width = size + 'px';
-      imageContainer.style.height = size + 'px';
-      this.turntable = new Turntable('#main-canvas', '#sub-canvas', size, size);
+      this.turntable = new Turntable('#main-canvas', '#sub-canvas');
       this.turntable.onResult = function (val, sumWeight) {
         const now = new Date();
         self.resultList.push({
@@ -46,7 +43,7 @@ var app = new Vue({
         });
         self.saveResultList();
         self.toast(`WINNER: ${val.label}`);
-        if (screenSize > 800) {
+        if (window.innerWidth > 800) {
           self.scrollResult();
         }
       };
@@ -77,7 +74,10 @@ var app = new Vue({
           e.preventDefault();
         });
       }
-
+      this.updateImageAreaSize();
+      window.addEventListener('resize', function() {
+        self.updateImageAreaSize();
+      });
       const appEl = document.querySelector('#app');
       appEl.classList.remove('not-ready');
       this.readData();

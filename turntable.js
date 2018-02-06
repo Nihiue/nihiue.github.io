@@ -10,11 +10,13 @@ function easeOutCubic(pos) {
 }
 
 class Turntable {
-  constructor(mainSel = '#main-canvas', subSel = '#sub-canvas', height = 1000, width = 1000) {
+  constructor(mainSel = '#main-canvas', subSel = '#sub-canvas') {
+    this.height = 1000;
+    this.width = 1000;
     this.canvas = document.querySelector(mainSel);
     this.ctx = this.canvas.getContext('2d');
-    this.canvas.width = this.height = width;
-    this.canvas.height = this.width = height;
+    this.canvas.width = this.width;
+    this.canvas.height = this.height;
 
     this.subCanvas = document.querySelector(subSel);
     this.subCtx = this.subCanvas.getContext('2d');
@@ -24,6 +26,13 @@ class Turntable {
     this.isRunning = false;
     this.currentPosition = 0;
     this.drawSub();
+  }
+  setImageSize(num) {
+    const size = num + 'px';
+    this.canvas.style.width = size;
+    this.canvas.style.height = size;
+    this.subCanvas.style.height = size;
+    this.subCanvas.style.width = size;
   }
   setData(data) {
     // 交叉位置
@@ -36,7 +45,6 @@ class Turntable {
   }
   drawMain() {
     const colorMap = ["rgb(33, 150, 243)", "rgb(3, 169, 244)", "rgb(0, 188, 212)", "rgb(0, 150, 136)", "rgb(76, 175, 80)", "rgb(139, 195, 74)", "rgb(205, 220, 57)", "rgb(255, 235, 59)", "rgb(255, 193, 7)", "rgb(255, 152, 0)", "rgb(255, 87, 34)", "rgb(233, 30, 99)", "rgb(244, 67, 54)", "rgb(233, 30, 99)", "rgb(156, 39, 176)", "rgb(103, 58, 183)", "rgb(63, 81, 181)"];
-    const ratio = this.width / 1000;
     const ctx = this.ctx;
     ctx.clearRect(0, 0, this.width, this.height);
     this.data.forEach(function (item) {
@@ -65,7 +73,7 @@ class Turntable {
 
       ctx.beginPath();
       ctx.arc(this.width / 2, this.height / 2, this.width / 4, startAngle, endAngle, false);
-      ctx.lineWidth = this.width / 2 - 80 * ratio;
+      ctx.lineWidth = this.width / 2 - 80;
       ctx.strokeStyle = colorMap[idx % colorMap.length];
       ctx.stroke();
       curPosition += item.weight;
@@ -73,11 +81,11 @@ class Turntable {
       ctx.beginPath();
       ctx.translate(this.width / 2, this.height / 2);
       ctx.rotate((startAngle + endAngle) / 2 - Math.PI / 2);
-      ctx.font = `${Math.round(18*ratio)}px Microsoft YaHei`;
+      ctx.font = '18px Microsoft YaHei';
       ctx.textAlign = 'left';
       ctx.textBaseline = 'middle';
       ctx.fillStyle = "#fff";
-      ctx.fillText(item.label, -27 * ratio, this.width / 2 - 80 * ratio, 108 * ratio);
+      ctx.fillText(item.label, -27, this.width / 2 - 80, 108);
       ctx.closePath();
       ctx.restore();
     }
@@ -90,34 +98,33 @@ class Turntable {
     const middleX = this.width / 2;
     const middleY = this.height / 2;
 
-    const ratio = this.width / 1000;
     ctx.beginPath();
-    ctx.arc(middleX, middleY, 180 * ratio, 0, Math.PI * 2, false);
+    ctx.arc(middleX, middleY, 180, 0, Math.PI * 2, false);
     ctx.fillStyle = colorMap[0];
     ctx.fill();
     ctx.closePath();
 
     ctx.beginPath();
-    ctx.arc(middleX, middleY, 90 * ratio, 0, Math.PI * 2, false);
+    ctx.arc(middleX, middleY, 90, 0, Math.PI * 2, false);
     ctx.fillStyle = colorMap[1];
     ctx.fill();
     ctx.closePath();
 
-    ctx.font = `Bold ${Math.round(40*ratio)}px Microsoft YaHei`;
+    ctx.font = 'Bold 40px Microsoft YaHei';
     ctx.textAlign = 'start';
     ctx.textBaseline = 'middle';
     ctx.fillStyle = colorMap[2];
     ctx.beginPath();
-    ctx.fillText('开始', this.width / 2 - 40 * ratio, this.height / 2 - 20 * ratio, 80 * ratio);
-    ctx.fillText('抽奖', this.width / 2 - 40 * ratio, this.height / 2 + 20 * ratio, 80 * ratio);
+    ctx.fillText('开始', this.width / 2 - 40, this.height / 2 - 20, 80);
+    ctx.fillText('抽奖', this.width / 2 - 40, this.height / 2 + 20, 80);
     ctx.fill();
     ctx.closePath();
 
     ctx.beginPath();
-    ctx.moveTo(middleX, middleY - 160 * ratio);
-    ctx.lineTo(middleX - 40 * ratio, middleY - 40 * ratio);
-    ctx.lineTo(middleX + 40 * ratio, middleY - 40 * ratio);
-    ctx.lineTo(middleX, middleY - 160 * ratio);
+    ctx.moveTo(middleX, middleY - 160);
+    ctx.lineTo(middleX - 40, middleY - 40);
+    ctx.lineTo(middleX + 40, middleY - 40);
+    ctx.lineTo(middleX, middleY - 160);
     ctx.fillStyle = colorMap[1];
     ctx.fill();
     ctx.closePath();
