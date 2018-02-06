@@ -35,7 +35,7 @@ class Turntable {
     this.setRotate(this.currentPosition);
   }
   drawMain() {
-    const colorMap = ["rgb(244, 67, 54)", "rgb(233, 30, 99)", "rgb(156, 39, 176)", "rgb(103, 58, 183)", "rgb(63, 81, 181)", "rgb(33, 150, 243)", "rgb(3, 169, 244)", "rgb(0, 188, 212)", "rgb(0, 150, 136)", "rgb(76, 175, 80)", "rgb(139, 195, 74)", "rgb(205, 220, 57)", "rgb(255, 235, 59)", "rgb(255, 193, 7)", "rgb(255, 152, 0)", "rgb(255, 87, 34)", "rgb(233, 30, 99)"];
+    const colorMap = ["rgb(33, 150, 243)", "rgb(3, 169, 244)", "rgb(0, 188, 212)", "rgb(0, 150, 136)", "rgb(76, 175, 80)", "rgb(139, 195, 74)", "rgb(205, 220, 57)", "rgb(255, 235, 59)", "rgb(255, 193, 7)", "rgb(255, 152, 0)", "rgb(255, 87, 34)", "rgb(233, 30, 99)", "rgb(244, 67, 54)", "rgb(233, 30, 99)", "rgb(156, 39, 176)", "rgb(103, 58, 183)", "rgb(63, 81, 181)"];
 
     const ctx = this.ctx;
     ctx.clearRect(0, 0, this.width, this.height);
@@ -78,7 +78,7 @@ class Turntable {
     }
   }
   drawSub(isActive) {
-    const colorMap = isActive ? ['rgba(255,255,255,0.8)', '#fa6800', '#fff'] : ['rgba(255,255,255,0.6)', '#f44336', '#fff'];
+    const colorMap = isActive ? ['rgba(255,255,255,0.8)', '#fa6800', '#FB8C00'] : ['rgba(255,255,255,0.6)', '#f44336', '#fff'];
     const ctx = this.subCtx;
     ctx.clearRect(0, 0, this.width, this.height);
 
@@ -109,8 +109,8 @@ class Turntable {
 
     ctx.beginPath();
     ctx.moveTo(middleX, middleY - 160);
-    ctx.lineTo(middleX - 50, middleY - 40);
-    ctx.lineTo(middleX + 50, middleY - 40);
+    ctx.lineTo(middleX - 40, middleY - 40);
+    ctx.lineTo(middleX + 40, middleY - 40);
     ctx.lineTo(middleX, middleY - 160);
     ctx.fillStyle = colorMap[1];
     ctx.fill();
@@ -146,12 +146,13 @@ class Turntable {
     function onRequestFrame(timestamp) {
       if (lastUpdate === 0) {
         lastUpdate = timestamp;
+      } else {
+        const delta = (timestamp - lastUpdate) / 16;
+        lastUpdate = timestamp;
+        pos = Math.round(pos + 100 * delta * speed) % 36000;
+        speed = speed - delta * 4 * (1.003 - easeOutCubic(1 - speed / 50));
+        self.setRotate(pos);
       }
-      const delta = (timestamp - lastUpdate) / 16;
-      lastUpdate = timestamp;
-      pos = Math.round(pos + 100 * delta * speed) % 36000;
-      speed = speed - delta * 4 * (1.002 - easeOutCubic(1 - speed / 50));
-      self.setRotate(pos);
       if (speed > 0.005) {
         window.requestAnimationFrame(onRequestFrame);
       } else {
