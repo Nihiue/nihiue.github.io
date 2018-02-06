@@ -1,0 +1,60 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.layout-container {
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+}
+
+.image-area {
+  position: relative;
+  overflow: hidden;
+  width: 1000px;
+  height: 1000px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.image-area canvas {
+  position: absolute;
+}
+
+.table-area {
+  padding: 30px;
+  min-height: 300px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  max-height: 100vh;
+  overflow: auto;
+}
+
+.toast {
+  position: fixed;
+  background: #e74c3c;
+  text-align: center;
+  font-size: 64px;
+  color: #f1c40f;
+  width: 800px;
+  right: 30px;
+  line-height: 160px;
+  height: 160px;
+  top: 30px;
+}
+
+.slide-fade-enter-active {
+  transition: all .8s ease;
+}
+
+.slide-fade-leave-active {
+  transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(800px);
+  opacity: 0;
+}

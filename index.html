@@ -1,335 +1,100 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<!doctype html>
+<html lang="zh-cmn-Hans">
 
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Lucky Dog</title>
+  <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./style.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+</head>
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-  <link rel="alternate" href="/default" title="Nihiue's Blog">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.4.x" />
-
-
-
-<link rel="canonical" href="https://nihiue.github.io/"/>
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="Nihiue&#39;s Blog">
-<meta property="og:url" content="https://nihiue.github.io/index.html">
-<meta property="og:site_name" content="Nihiue&#39;s Blog">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nihiue&#39;s Blog">
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.4.x" />
-
-
-
-
-
-
-
-<script>
-  var CONFIG = {
-    search: false,
-    searchPath: "/search.xml",
-    fancybox: false,
-    toc: true,
-  }
-</script>
-
-
-
-
-  
-
- <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-42117287-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-
-
-
-    <title> Nihiue's Blog </title>
-  </head>
-
-  <body><div id="mobile-navbar" class="mobile-navbar">
-  <div class="mobile-header-logo">
-    <a href="/." class="logo">Nihiue's Blog</a>
-  </div>
-  <div class="mobile-navbar-icon">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</div>
-
-<nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list">
-    
-      <a href="/">
-        <li class="mobile-menu-item">
-          
-          
-            Home
-          
-        </li>
-      </a>
-    
-      <a href="/archives/">
-        <li class="mobile-menu-item">
-          
-          
-            Archives
-          
-        </li>
-      </a>
-    
-  </ul>
-</nav>
-
-    <div class="container" id="mobile-panel">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">Nihiue's Blog</a>
-</div>
-
-<nav class="site-navbar">
-  
-    <ul id="menu" class="menu">
-      
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            
-            
-              Home
-            
-          </a>
-        </li>
-      
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            
-            
-              Archives
-            
-          </a>
-        </li>
-      
-      
-    </ul>
-  
-</nav>
-
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts">
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/chrome-file-input-bug/">Chrome 文件上传控件 bug</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          May 24, 2017
-        </span>
+<body>
+  <div id="app">
+    <div class="layout-container">
+      <div class="image-area">
+        <canvas id="main-canvas"></canvas>
+        <canvas id="sub-canvas"></canvas>
       </div>
-    </header>
+      <div class="table-area">
+        <button type="button" style="float:right" class="btn btn-primary" data-toggle="modal" data-target="#user-list-config">配置参与者</button>
+        <h1>Lucky Dog</h1>
+        <br>
+        <table class="table">
+          <tr>
+            <th>时间</th>
+            <th>中奖者</th>
+            <th>概率</th>
+            <th>备注</th>
+            <th></th>
+          </tr>
+          <tr v-for="(item, index) in resultList" :key="item.id">
+            <td>{{item.time}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.probability}}</td>
+            <td>
+              <input type="text" class="form-control" v-model="item.note" @blur="saveResultList">
+            </td>
+            <td>
+              <button class="btn btn-sm btn-danger" @click="removeResult(index)">移除</button>
+            </td>
+          </tr>
+        </table>
 
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <p>表单中的 file input 在前端开发中使用很多，看起来并没有什么玄机。 可是人生处处有惊喜，这么一个简单的控件却引出了一个奇怪的 bug，差点让老司机也翻了车。</p>
-<h2 id="案发现场"><a href="#案发现场" class="headerlink" title="案发现场"></a>案发现场</h2><p>我厂使用的是七牛CDN，自然在前端有文件上传的需求时引入了 <a href="https://developer.qiniu.com/kodo/sdk/1283/javascript" target="_blank" rel="external">七牛 JS SDK</a>。</p>
-<p>开发过程略去不表，需求很快完成。 然而上线后却出现了诡异的问题： 在 Chrome 中点击上传文件后，常常数秒才能弹出文件选择框，而且这个延迟不定，在 Windows 上和 MacOS 上都可以复现。</p>
-<h2 id="谁是真凶"><a href="#谁是真凶" class="headerlink" title="谁是真凶"></a>谁是真凶</h2><p>作为一名老司机，遇到这种情况自然是不慌。</p>
-<p>先从七牛的 SDK 查起，粗粗看了一下实现，七牛只是在 <a href="http://www.plupload.com/" target="_blank" rel="external">plupload</a> 外面封装了一层完成一些权限校验之类的操作，实际上传管理都是 plupload 完成的。 去 plupload 的 Github 搜了一下 issue，看起来 <a href="https://github.com/moxiecode/plupload/issues/1404" target="_blank" rel="external">这个问题</a> 并不是个例，可是这些讨论也没有提供什么信息量。</p>
-<p>plupload 的机制是在表单中插入一个隐藏的 file input，当用户点击自定义的文件上传按钮时，触发隐藏的 input 的 <code>click</code> 事件，从而实现功能。</p>
-<p>这个实现应当说是比较符合直觉的，初步考虑可能是 Chrome 对于不可见的 file input 有特殊的安全策略，事件代理机制导致了延迟。</p>
-<p>为了排除这个可能性，写了一个原生写法的最小实现</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">accept</span>=<span class="string">".zip"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>然而问题还是存在，我开始有点方了。 因为这个代码已经简单到容不下 bug 的程度，到了这一层，基本上就是 浏览器/操作系统 的问题了。</p>
-<h2 id="山重水复"><a href="#山重水复" class="headerlink" title="山重水复"></a>山重水复</h2><p>考虑了一下，这个问题只在 Chrome 上出现，Safari 和 Edge 及 IE 上没问题，并且可以跨操作系统复现，应该是个 Chrome 的 bug。</p>
-<p>放狗去搜了一下 “Chrome file input popup lag” 的内容：<a href="https://stackoverflow.com/questions/39187857/inputfile-accept-image-open-dialog-so-slow-with-chrome" target="_blank" rel="external">Stack Overflow 上的讨论</a> | <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=638874" target="_blank" rel="external">Chromium Issue 638874</a></p>
-<p>类似表现的 issue 有一堆，和之前 Github 上的讨论差不多，不光是浏览器使用者搞不清状况，连 Chromium 团队也是一头雾水。</p>
-<h2 id="盲生，你发现了华点"><a href="#盲生，你发现了华点" class="headerlink" title="盲生，你发现了华点"></a>盲生，你发现了华点</h2><p>这个 bug 有一个很有意思的点，就是每次延迟的时间不定，而且在不同时间，不同环境下表现也不一致。 这种不稳定性让人不得不怀疑和 IO 有什么关系。</p>
-<p>Stack Overflow 上有个叫 <code>cute_ptr</code> 老兄的 0 赞回答提供了一个细节, 他是这么说的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">I Think I may have found the reason, at least on my machine:</div><div class="line"></div><div class="line">When my internet connection is on, it opens fast the file dialog,</div><div class="line">when I turn it off, it is slow, then I turn it on again and it is fast again.</div></pre></td></tr></table></figure>
-<p>简单来说，网络连接的情况会影响这个 bug 的表现。</p>
-<p>我通过 连接/断开 VPN 尝试了一下，果真连上 VPN 的时候就不会出现这个 bug，而断开的时候就一定会出现。</p>
-<p>到这里应该是比较明朗了， 我猜想是 Chrome 会在某些情况尝试连接 Google 的服务器， 而因为某些不可说的原因，在中国是访问不到 Google 服务器，所以才会触发 bug 。这也是为什么大部分国外 web 开发者和 Chromium 团队没能找到这个问题的根源： 几乎没有人在离线的情况下搞开发。</p>
-<h2 id="锁定证据"><a href="#锁定证据" class="headerlink" title="锁定证据"></a>锁定证据</h2><p>既然有了方向，那只需要抓住证据就好<br>祭出大杀器 Fiddler，拦截全局流量，启用 TLS 解密，不出意外，抓到了这个请求:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">POST https://sb-ssl.google.com/safebrowsing/clientreport/download?key=xxxxxxxxxxxxxxxx HTTP/1.1</div><div class="line">Host: sb-ssl.google.com</div><div class="line">Connection: keep-alive</div><div class="line">Content-Length: 194</div><div class="line">Content-Type: application/octet-stream</div><div class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36</div><div class="line">Accept-Encoding: gzip, deflate, br</div><div class="line">Cookie: XXXXXXXXXXXXXX</div><div class="line"></div><div class="line"></div><div class="line">https://www.kesci.com/apps/home/XXXXXXXXXX &quot;Q</div><div class="line">https://www.kesci.com/apps/home/XXXXXXXXXX.zipP   .zip</div></pre></td></tr></table></figure>
-<p>Response 是一段16进制编码， 意义不明。</p>
-<p>这个请求会在每次点击 file input 时触发， 可以看到 request body 里包括了当前页面的上下文信息，以及 file input 的属性。 从 url 上看属于 Chrome 的安全策略，用于检查文件下载时的安全性，但是在文件上传时也会触发这个检查，应当是个 bug。</p>
-<p>如果 Google 服务器不可达，这个请求会花费几秒钟才会失败，会阻塞选择文件对话框的弹出。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>此问题我已反馈到 <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=638874" target="_blank" rel="external">Chromium Issue 638874</a>，并且开发团队已经开始着手<a href="https://chromium-review.googlesource.com/c/514582/" target="_blank" rel="external">解决问题</a>。</p>
-<p>事后回想，这个问题我很早就遇到过了。不过那时候的场景是图片上传，当把 accept 中的 MIME 通配改为扩展名列表时可以暂时屏蔽这个 bug，当时也就没多想。 现在想来应该是不同的 accept 值会触发不同的安全策略，有些可能在白名单里。</p>
-<hr>
-<p>另外的另外， <a href="https://www.kesci.com" target="_blank" rel="external">Kesci.com</a> 前端团队招人</p>
-<ul>
-<li>上海</li>
-<li>90后(非常靠谱的)团队</li>
-<li>业内标准偏上薪资</li>
-<li>创造性的工作内容</li>
-<li>技术栈以 node / vue 为主</li>
-<li>目前已敲定 Pre-A 轮</li>
-</ul>
-<p>欢迎邮件 nihiue@gmail.com 聊聊，大家交个朋友也是好的嘛</p>
-
-        
-      
+      </div>
     </div>
-
-    
-
-    
-
-  </article>
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    
-    
-  </nav>
-
-
+    <transition name="slide-fade">
+      <div class="toast" v-show="showToast">{{toastText}}</div>
+    </transition>
+    <div class="modal" tabindex="-1" role="dialog" id="user-list-config">
+      <div class="modal-dialog modal-lg" role="document">
+        <form @submit.prevent="userListSubmit">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">配置参与者</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <tr>
+                  <th>
+                    姓名
+                  </th>
+                  <th style="width: 50%">
+                    权重
+                  </th>
+                  <th>
+                    <button class="btn btn-sm btn-success" type="button" @click="addUser">添加</button>
+                  </th>
+                </tr>
+                <tr v-for="(item, index) in userList" :key="item.id">
+                  <td>
+                    <input type="text" class="form-control" v-model="item.label" required>
+                  </td>
+                  <td>
+                    <input type="number" class="form-control" v-model="item.weight" required>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-danger" type="button" @click="userList.splice(index, 1)">移除</button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">应用</button>
+            </div>
           </div>
-          
-
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:nihiue@gmail.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-      
-      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
-  </span>
-  
-  <span class="theme-info">
-    Theme - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2017
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">Nihiue(Wanglei)</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
+        </form>
       </div>
     </div>
+  </div>
+  <script src="./turntable.js"></script>
+  <script src="./app.js"></script>
+</body>
 
-    
-
-
-    
-
-
-
-
-  
-    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-  
-
-  
-    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
-  
-
-  
-
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.4.x"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.4.x"></script>
-
-    
-  </body>
 </html>
