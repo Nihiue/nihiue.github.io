@@ -20,7 +20,9 @@ var app = new Vue({
       let size = 1000;
       const screenSize = window.screen.width;
       // const screenSize = window.innerWidth;
-      if (screenSize < 1200) {
+      if (screenSize <= 800) {
+        size = screenSize;
+      } else if (screenSize < 1200) {
         size = 600;
       } else if (screenSize < 1400) {
         size = 700;
@@ -29,7 +31,6 @@ var app = new Vue({
       } else if (screenSize < 1800) {
         size = 900;
       }
-
       const imageContainer = document.querySelector('.image-area');
       imageContainer.style.width = size + 'px';
       imageContainer.style.height = size + 'px';
@@ -45,7 +46,9 @@ var app = new Vue({
         });
         self.saveResultList();
         self.toast(`WINNER: ${val.label}`);
-        self.scrollResult();
+        if (screenSize > 800) {
+          self.scrollResult();
+        }
       };
 
       if ((/iphone|ipad|android/i).test(navigator.userAgent)) {

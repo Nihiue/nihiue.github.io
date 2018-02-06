@@ -21,6 +21,7 @@ body {
   flex-shrink: 0;
 }
 
+
 .image-area canvas {
   position: absolute;
 }
@@ -66,4 +67,24 @@ body {
 .slide-fade-leave-to {
   transform: translateX(800px);
   opacity: 0;
+}
+
+@media screen and (max-width: 800px) {
+  .layout-container {
+    display: block;
+  }
+  .table-wrapper {
+    font-size: 12px;
+    padding: 10px 0;
+    max-height: initial;
+  }
+  .toast {
+    font-size: 24px;
+    width: 90vw;
+    height: 60px;
+    line-height: 60px;
+    left: 5vw;
+    top: auto;
+    bottom: 20vh;
+  }
 }
