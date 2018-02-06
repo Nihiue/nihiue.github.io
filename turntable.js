@@ -77,13 +77,13 @@ class Turntable {
       ctx.textAlign = 'left';
       ctx.textBaseline = 'middle';
       ctx.fillStyle = "#fff";
-      ctx.fillText(item.label, -27 * ratio, this.width / 2 - 80 * ratio, 54 * ratio);
+      ctx.fillText(item.label, -27 * ratio, this.width / 2 - 80 * ratio, 108 * ratio);
       ctx.closePath();
       ctx.restore();
     }
   }
   drawSub(isActive) {
-    const colorMap = isActive ? ['rgba(255,255,255,0.8)', '#fa6800', '#FB8C00'] : ['rgba(255,255,255,0.6)', '#f44336', '#fff'];
+    const colorMap = isActive ? ['rgba(255,255,255,0.4)', '#FF5722', '#b71c1c'] : ['rgba(255,255,255,0.6)', '#f44336', '#fff'];
     const ctx = this.subCtx;
     ctx.clearRect(0, 0, this.width, this.height);
 

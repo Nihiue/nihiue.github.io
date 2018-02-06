@@ -8,7 +8,6 @@ var app = new Vue({
       userList: [],
       resultList: [],
       toastText: '',
-      triggerType: '',
       showToast: false
     };
   },
@@ -48,60 +47,54 @@ var app = new Vue({
         self.toast(`WINNER: ${val.label}`);
         self.scrollResult();
       };
-      document.addEventListener('keyup', function (e) {
-        if (e.keyCode !== 32 || e.target !== document.body) {
-          return;
-        }
-        self.actionEnd('key');
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.keyCode !== 32 || e.repeat || e.target !== document.body) {
-          return;
-        }
-        self.actionStart('key');
-      });
 
-      const subEl = document.querySelector('#sub-canvas');
-
-      subEl.addEventListener('mousedown', function (e) {
-        self.actionStart('mouse');
-      });
-      subEl.addEventListener('mouseup', function (e) {
-        self.actionEnd('mouse');
-      });
-
-      subEl.addEventListener('touchstart', function (e) {
-        self.actionStart('touch');
-      });
-      subEl.addEventListener('touchend', function (e) {
-        self.actionEnd('touch');
-      });
+      if ((/iphone|ipad|android/i).test(navigator.userAgent)) {
+        const subEl = document.querySelector('#sub-canvas');
+        subEl.addEventListener('touchstart', function (e) {
+          self.actionStart();
+          e.preventDefault();
+        });
+        subEl.addEventListener('touchend', function (e) {
+          self.actionEnd();
+          e.preventDefault();
+        });
+      } else {
+        document.addEventListener('keyup', function (e) {
+          if (e.keyCode !== 32 || e.target !== document.body) {
+            return;
+          }
+          self.actionEnd();
+          e.preventDefault();
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.keyCode !== 32 || e.repeat || e.target !== document.body) {
+            return;
+          }
+          self.actionStart();
+          e.preventDefault();
+        });
+      }
 
       const appEl = document.querySelector('#app');
       appEl.classList.remove('not-ready');
       this.readData();
       this.applyData();
     },
-    actionStart(type) {
-      console.log(type);
-      if (this.turntable.isRunning || this.triggerType) {
+    actionStart() {
+      if (this.turntable.isRunning || this.actionStartTime !== 0) {
         return;
       }
-      this.triggerType = type;
       this.turntable.drawSub(true);
       this.actionStartTime = Date.now();
     },
-    actionEnd(type) {
-      if (this.turntable.isRunning || type !== this.triggerType) {
+    actionEnd() {
+      if (this.turntable.isRunning || this.actionStartTime === 0) {
         return;
       }
-      this.triggerType = '';
-      this.turntable.drawSub(false);
       const delta = Date.now() - this.actionStartTime;
-      if (delta < 120) {
-        return;
-      }
+      this.actionStartTime = 0;
       const speed = Math.round(delta * 0.04);
+      this.turntable.drawSub(false);
       this.turntable.spin(speed);
     },
     scrollResult() {
@@ -128,7 +121,7 @@ var app = new Vue({
         this.userList = JSON.parse(user);
       } else {
         const list = [];
-        for (var i = 0; i< 13; i++) {
+        for (var i = 0; i < 13; i++) {
           list.push({
             label: `Item ${i}`,
             weight: 1,
