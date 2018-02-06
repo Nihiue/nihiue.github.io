@@ -23,19 +23,19 @@
           <button type="button" class="btn btn-outline-primary float-right" data-toggle="modal" data-target="#user-list-config">
             <i class="fa fa-cog"></i>
           </button>
-          <h1>Lucky Dog</h1>
+          <h1>LUCKY DOG</h1>
         </div>
         <div class="table-wrapper">
           <table class="table table-hover">
             <tr class="thead-light">
-              <th>时间</th>
+              <th>#</th>
               <th>结果</th>
               <th>概率</th>
               <th>备注</th>
               <th></th>
             </tr>
-            <tr v-for="(item, index) in resultList" :key="item.id">
-              <td>{{item.time}}</td>
+            <tr v-for="(item, index) in resultList" :key="item.id" :title="item.time">
+              <td>{{index + 1}}</td>
               <td>{{item.name}}</td>
               <td>{{item.probability}}</td>
               <td style="max-width:8em">
