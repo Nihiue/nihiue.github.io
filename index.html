@@ -8,7 +8,7 @@
   <title>Lucky Dog</title>
   <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="./style.css?t=207" rel="stylesheet">
+  <link href="./style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -20,7 +20,7 @@
       </div>
       <div class="table-area">
         <div class="table-wrapper">
-          <button type="button" class="btn btn-outline-primary float-right" data-toggle="modal" data-target="#user-list-config">
+          <button type="button" class="btn btn-outline-primary float-right" data-toggle="modal" data-target="#user-list-config" @focus="clearFocus" tabindex="-1">
             <i class="fa fa-cog"></i>
           </button>
           <h1>LUCKY DOG</h1>
@@ -34,6 +34,11 @@
               <th>备注</th>
               <th></th>
             </tr>
+            <tr v-if="resultList.length === 0">
+              <td colspan="5" class="font-italic text-center" style="font-size:13px;color:#666">
+                {{isMobile ? '按住转盘' : '按住空格键'}}抽奖
+              </td>
+            </tr>
             <tr v-for="(item, index) in resultList" :key="item.id" :title="item.time">
               <td>{{index + 1}}</td>
               <td>{{item.name}}</td>
@@ -42,7 +47,7 @@
                 <input type="text" class="form-control form-control-sm" v-model="item.note" @blur="saveResultList">
               </td>
               <td>
-                <button class="btn btn-sm btn-outline-danger" @click="removeResult(index)">
+                <button class="btn btn-sm btn-outline-danger" @click="removeResult(index)" @focus="clearFocus" tabindex="-1">
                   <i class="fa fa-remove"></i>
                 </button>
               </td>
@@ -114,8 +119,8 @@
   <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
-  <script src="./turntable.js?t=207"></script>
-  <script src="./app.js?t=207"></script>
+  <script src="./turntable.js"></script>
+  <script src="./app.js"></script>
 </body>
 
 </html>

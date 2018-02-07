@@ -36,7 +36,18 @@ class Turntable {
   }
   setData(data) {
     // 交叉位置
-    this.data = data.sort(function () {
+    const newData = [];
+    this.data = data.map(function (item) {
+      const w = parseInt(item.weight, 10);
+      if (isNaN(w) || w < 0) {
+        item.weight = 0;
+      } else {
+        item.weight = w;
+      }
+      return item;
+    }).filter(function(item) {
+      return item.weight > 0;
+    }).sort(function () {
       return Math.random() - 0.5;
     });
     // 初始角度随机
@@ -46,19 +57,15 @@ class Turntable {
   drawMain() {
     const colorMap = ["rgb(33, 150, 243)", "rgb(3, 169, 244)", "rgb(0, 188, 212)", "rgb(0, 150, 136)", "rgb(76, 175, 80)", "rgb(139, 195, 74)", "rgb(205, 220, 57)", "rgb(255, 235, 59)", "rgb(255, 193, 7)", "rgb(255, 152, 0)", "rgb(255, 87, 34)", "rgb(233, 30, 99)", "rgb(244, 67, 54)", "rgb(233, 30, 99)", "rgb(156, 39, 176)", "rgb(103, 58, 183)", "rgb(63, 81, 181)"];
     const ctx = this.ctx;
-    ctx.clearRect(0, 0, this.width, this.height);
-    this.data.forEach(function (item) {
-      const w = parseInt(item.weight, 10);
-      if (isNaN(w) || w < 0) {
-        item.weight = 0;
-      } else {
-        item.weight = w;
-      }
-    });
+
     const sum = this.data.reduce(function (pre, cur) {
       return pre + cur.weight;
     }, 0);
-
+    ctx.clearRect(0, 0, this.width, this.height);
+    if (sum <= 0) {
+      alert('请输入项目');
+      return;
+    }
     this.sumWeight = sum;
     let curPosition = 0;
     for (let idx = 0; idx < this.data.length; idx++) {

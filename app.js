@@ -8,13 +8,19 @@ var app = new Vue({
       userList: [],
       resultList: [],
       toastText: '',
-      showToast: false
+      showToast: false,
+      isMobile: false
     };
   },
   mounted() {
     this.initApp();
   },
   methods: {
+    clearFocus(e) {
+      if (e && e.target) {
+        e.target.blur();
+      }
+    },
     updateImageAreaSize() {
       const vpSize = window.innerWidth;
       let imageSize;
@@ -47,8 +53,8 @@ var app = new Vue({
           self.scrollResult();
         }
       };
-
-      if ((/iphone|ipad|android/i).test(navigator.userAgent)) {
+      this.isMobile = (/iphone|ipad|android/i).test(navigator.userAgent);
+      if (this.isMobile) {
         const subEl = document.querySelector('#sub-canvas');
         subEl.addEventListener('touchstart', function (e) {
           self.actionStart();
@@ -109,7 +115,7 @@ var app = new Vue({
     addUser() {
       this.userList.push({
         id: Date.now(),
-        label: 'name',
+        label: `Item ${this.userList.length}`,
         weight: 1
       })
     },
