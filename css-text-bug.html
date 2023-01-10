@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>cssText Bug</title>
+    <style>
+      :root {
+        --bg-color: #f9f9f9;
+      }
+      body {
+        background: var(--bg-color);
+        background-clip: padding-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="padding: 24px; text-align: center">
+      <button style="font-size: 24px; padding: 12px" id="btn">
+        Show cssRules[1].cssText
+      </button>
+    </div>
+    <script>
+      document.querySelector("#btn").addEventListener("click", () => {
+        const styleElement = document.querySelector("head style");
+        alert(styleElement.sheet.cssRules[1].cssText);
+      });
+    </script>
+  </body>
+</html>
